@@ -5,6 +5,7 @@ require_once("vendor/autoload.php");
 use \Slim\Slim;
 use \BangemannGuilherme\Page;
 use \BangemannGuilherme\PageAdmin;
+use \BangemannGuilherme\Model\User;
 
 $app = new Slim();
 
@@ -24,6 +25,26 @@ $app->get('/admin', function() {
 
 	$page->setTpl("index");
 	
+});
+
+$app->get('/admin/login', function() {
+
+	$page = new PageAdmin([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("login");
+
+});
+
+$app->post('/admin/login', function() {
+
+	User::login($_POST["login"], $_POST["password"]);
+
+	header("Location: /admin");
+	exit;
+
 });
 
 $app->run();
