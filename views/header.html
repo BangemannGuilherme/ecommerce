@@ -2,6 +2,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>GUIMBA ENTERPRISE</title>
+        <title>GUIBOY</title>
     </head>
     <body>
