@@ -13,10 +13,11 @@ class User extends Model {
 		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister"
 	];
 
-	public static function login($login, $password):User
+	public static function login($login, $password)
 	{
 
 		$db = new Sql();
+		//$sql = new Sql();
 
 		$results = $db->select("SELECT * FROM tb_users WHERE deslogin = :LOGIN", array(
 			":LOGIN"=>$login
@@ -28,10 +29,10 @@ class User extends Model {
 
 		$data = $results[0];
 
-		if (password_verify($password, $data["despassword"])) {
+		if (password_verify($password, $data["despassword"]) === true) {
 
 			$user = new User();
-			$user->setData($data);
+			$user->setData($data);			
 
 			$_SESSION[User::SESSION] = $user->getValues();
 
@@ -57,12 +58,12 @@ class User extends Model {
 
 		if (
 			!isset($_SESSION[User::SESSION])
-			|| 
+			|| //"ou"
 			!$_SESSION[User::SESSION]
 			||
-			!(int)$_SESSION[User::SESSION]["iduser"] > 0
+			!(int)$_SESSION[User::SESSION]["iduser"] > 0  //verifica se o id do usuário não for vazio. Se for maior que 0 é um usuário
 			||
-			(bool)$_SESSION[User::SESSION]["iduser"] !== $inadmin
+			(bool)$_SESSION[User::SESSION]["iduser"] !== $inadmin  //verifica se o usuário é um usuário admin  "bool" = boolean
 		) {
 			
 			header("Location: /admin/login");

@@ -8137,14 +8137,15 @@ body {
  /*font-size: 14px;
   line-height: 1.8;*/
   font-weight: normal;
-  background: #ffffff;
+  background: url(/resources/admin/dist/login/images/DataVisualization.jpg)/*#000000*/;
   color: gray; }
 
 a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #45b77d; }
+  color: #ffffff;
+  /*border: 1px solid #ffffff !important;*/ }
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -8173,7 +8174,7 @@ h1, h2, h3, h4, h5,
 
 .heading-section {
   font-size: 28px;
-  color: #000; }
+  color: #ffffff; }
 
 .img {
   background-size: cover;
@@ -8182,7 +8183,7 @@ h1, h2, h3, h4, h5,
 
 .login-wrap {
   position: relative;
-  background: #320000;
+  background: #000000b8;
   border-radius: 5px;
   padding-left: 30px;
   padding-right: 30px;
@@ -8198,11 +8199,11 @@ h1, h2, h3, h4, h5,
   .login-wrap p {
     color: rgba(255, 255, 255, 0.5); }
   .login-wrap .img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     margin: 0 auto;
-    margin-bottom: 20px; }
+    margin-bottom: 15px; }
 
 .form-group {
   position: relative; }
@@ -8328,8 +8329,8 @@ h1, h2, h3, h4, h5,
     outline: none; }
   .btn.btn-primary {
     background: #45b77d !important;
-    border: 1px solid #45b77d !important;
-    color: #fff !important; }
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important; }
     .btn.btn-primary:hover {
       border: 1px solid #b689b0;
       background: transparent;

@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="/resources/admin/dist/new/css/style.css">
+	<link rel="stylesheet" href="/resources/admin/dist/login/css/style.css">
 
 	</head>
 	<body>
@@ -17,24 +17,40 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Admin Login</h2>
+					<h2 class="heading-section"><b>Admin Login</b></h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap py-5">
-		      	<div class="img d-flex align-items-center justify-content-center" style="background-image: url(/resources/admin/dist/new/images/logo2x.png);"></div>
+		      	<div class="img d-flex align-items-center justify-content-center" style="background-image: url(/resources/admin/dist/login/images/logo2x.png);"></div>
 		      	<h3 class="text-center mb-0">Welcome</h3>
 		      	<p class="text-center">Sign in by entering the information below</p>
-						<form action="#" class="login-form">
+						<!--<form action="#" class="login-form">-->
+							<form action="/admin/login" method="post">
 		      		<div class="form-group">
 		      			<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-		      			<input type="text" class="form-control" placeholder="Username" required>
+		      			<input type="text" class="form-control" placeholder="Username" name="login" required>
 		      		</div>
 	            <div class="form-group">
 	            	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-	              <input type="password" class="form-control" placeholder="Password" required>
+	              <input type="password" class="form-control" placeholder="Password" name="password" required>
 	            </div>
+					<div class="col-xs-8">
+					  <div class="checkbox icheck">
+						<label>
+						  <input type="checkbox"> Remember Me
+						</label>
+					</div>
+				<!--<form action="/admin/login" method="post">
+					<div class="form-group has-feedback">
+					  <input type="text" class="form-control" placeholder="Login" name="deslogin">
+					  <span class="glyphicon glyphicon-user form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+					  <input type="password" class="form-control" placeholder="Password" name="despassword">
+					  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>-->
 	            <div class="form-group d-md-flex">
 								<div class="w-100 text-md-right">
 									<a href="#">Forgot Password</a>
