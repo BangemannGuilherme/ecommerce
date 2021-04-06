@@ -3,13 +3,13 @@
 
 <head>
 
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin Page</title>
 
     <!-- Custom fonts for this template-->
     <link href="/resources/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,11 +31,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/resources/admin/index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-brain"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Admin</div>
             </a>
 
             <!-- Divider -->
@@ -43,9 +43,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/resources/admin/index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                <a class="nav-link" href="/admin">
+                    <i class="fas fa-fw fa-compass"></i>
+                    <span>Menu</span></a>
             </li>
 
             <!-- Divider -->
@@ -72,12 +72,12 @@
             <!-- Nav Item - Categories -->
             <li class="nav-item">
                      <a class="nav-link" href="/admin/categories"> 
-                         <i class="fas fa-fw fa-categories"></i>
+                         <i class="fas fa-fw fa-table"></i>
                          <span>Categories</span></a>
                  </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -90,10 +90,10 @@
                         <a class="collapse-item" href="/resources/admin/cards.html">Cards</a>
                     </div>
                 </div>
-            </li>
+            </li>-->
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
@@ -109,18 +109,18 @@
                         <a class="collapse-item" href="/resources/admin/utilities-other.html">Other</a>
                     </div>
                 </div>
-            </li>
+            </li>-->
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <!--<div class="sidebar-heading">
                 Addons
-            </div>
+            </div>-->
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -138,21 +138,21 @@
                         <a class="collapse-item" href="/resources/admin/blank.html">Blank Page</a>
                     </div>
                 </div>
-            </li>
+            </li>-->
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="/resources/admin/charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
-            </li>
+            </li>-->
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="/resources/admin/tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
-            </li>
+            </li>-->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -163,11 +163,11 @@
             </div>
 
             <!-- Sidebar Message -->
-            <div class="sidebar-card">
+            <!--<div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="/resources/admin/img/undraw_rocket.svg" alt="">
                 <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
                 <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
+            </div>-->
 
         </ul>
         <!-- End of Sidebar -->
@@ -350,7 +350,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                                 <img class="img-profile rounded-circle"
                                     src="/resources/admin/img/undraw_profile.svg">
                             </a>

@@ -43,8 +43,8 @@
                     <td>{$value.deslogin}</td>
                     <td>{if="$value.iduser == 1"}Yes{else}No{/if}</td>
                     <td>
-                      <a href="/admin/users/{$value.iduser}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
-                      <a href="/admin/users/{$value.iduser}/delete" onclick="return confirm('Are you sure you want to DELETE this account?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/admin/users/{$value.iduser}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                      <a href="/admin/users/{$value.iduser}/delete" onclick="return confirm('Are you sure you want to DELETE this account?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                   </tr>
                   {/loop}

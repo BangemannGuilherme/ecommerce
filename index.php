@@ -206,7 +206,7 @@ $app->get('/admin/categories/:idcategory/delete', function ($idcategory)
 	exit;
 });
 
-$app->get('/admin/categories/:idcategory/delete', function ($idcategory)
+$app->get('/admin/categories/:idcategory', function ($idcategory)
 {
 	User::verifyLogin();
 
@@ -222,7 +222,7 @@ $app->get('/admin/categories/:idcategory/delete', function ($idcategory)
 
 });
 
-$app->post('/admin/categories/:idcategory/delete', function ($idcategory)
+$app->post('/admin/categories/:idcategory', function ($idcategory)
 {
 	User::verifyLogin();
 
@@ -236,6 +236,7 @@ $app->post('/admin/categories/:idcategory/delete', function ($idcategory)
 
 	header("Location: /admin/categories");
 	exit;
+
 });
 
 $app->run();

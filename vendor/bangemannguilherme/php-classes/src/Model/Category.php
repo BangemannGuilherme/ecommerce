@@ -40,7 +40,7 @@ class Category extends Model {
 
     }
 
-    /*public function update() {
+   /* public function update() {
 
 		$db = new Sql();
 

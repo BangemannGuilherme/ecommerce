@@ -27,23 +27,23 @@
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Name</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome">
+              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Type your name">
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login">
+              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Type your login">
             </div>
             <div class="form-group">
               <label for="nrphone">Phone</label>
-              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone">
+              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Type your phone">
             </div>
             <div class="form-group">
               <label for="desemail">E-mail</label>
-              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o e-mail">
+              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Type your e-mail">
             </div>
             <div class="form-group">
               <label for="despassword">Password</label>
-              <input type="password" class="form-control" id="despassword" name="despassword" placeholder="Digite a senha">
+              <input type="password" class="form-control" id="despassword" name="despassword" placeholder="Type your password">
             </div>
             <div class="checkbox">
               <label>
