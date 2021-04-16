@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
   <!-- Error Message Style -->
@@ -24,25 +24,25 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/admin/users/{$user.iduser}" method="post" id="form-user">
+        <form role="form" action="/admin/users/<?php echo htmlspecialchars( $user["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post" id="form-user">
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Name</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Type your name" value="{$user.desperson}">
+              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Type your name" value="<?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               <span class='error-msg name'></span>
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Type your login"  value="{$user.deslogin}">
+              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Type your login"  value="<?php echo htmlspecialchars( $user["deslogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               <span class='error-msg login'></span>
             </div>
             <div class="form-group">
               <label for="nrphone">Phone</label>
-              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Type your phone"  value="{$user.nrphone}">
+              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Type your phone"  value="<?php echo htmlspecialchars( $user["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
             <div class="form-group">
               <label for="desemail">E-mail</label>
-              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Type your e-mail" value="{$user.desemail}">
+              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Type your e-mail" value="<?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               <span class='error-msg email'></span>
             </div>
             <div class="form-group">
@@ -52,7 +52,7 @@
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="inadmin" value="1" {if="$user.inadmin == 1"}checked{/if}> Administrator Access
+                <input type="checkbox" name="inadmin" value="1" <?php if( $user["inadmin"] == 1 ){ ?>checked<?php } ?>> Administrator Access
               </label>
             </div>
           </div>
