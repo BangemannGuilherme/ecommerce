@@ -1,0 +1,85 @@
+<?php
+
+namespace Phoenix\Config;
+
+use Phoenix\Exception\ConfigException;
+use Phoenix\Exception\InvalidArgumentValueException;
+
+class Config
+{
+    /**
+     * @var array<string, mixed>
+     */
+    private $configuration = [
+        'log_table_name' => 'phoenix_log',
+        'migration_dirs' => [],
+        'environments' => [],
+        'default_environment' => '',
+    ];
+
+    /**
+     * @param array<string, mixed> $configuration
+     * @throws ConfigException
+     */
+    public function __construct(array $configuration)
+    {
+        $this->configuration = array_merge($this->configuration, $configuration);
+        if (empty($this->configuration['migration_dirs'])) {
+            throw new ConfigException('Empty migration dirs');
+        }
+
+        if (empty($this->configuration['environments'])) {
+            throw new ConfigException('Empty environments');
+        }
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getConfiguration(): array
+    {
+        return $this->configuration;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function getMigrationDirs(): array
+    {
+        return $this->configuration['migration_dirs'];
+    }
+
+    public function getMigrationDir(?string $dir = null): string
+    {
+        if ($dir === null) {
+            if (count($this->configuration['migration_dirs']) > 1) {
+                throw new InvalidArgumentValueException('There are more then 1 migration dirs. Use one of them: ' . implode(', ', array_keys($this->configuration['migration_dirs'])));
+            }
+            return current($this->configuration['migration_dirs']);
+        }
+
+        if (isset($this->configuration['migration_dirs'][$dir])) {
+            return $this->configuration['migration_dirs'][$dir];
+        }
+
+        throw new InvalidArgumentValueException('Directory "' . $dir . '" doesn\'t exist. Use: ' . implode(', ', array_keys($this->configuration['migration_dirs'])));
+    }
+
+    public function getLogTableName(): string
+    {
+        return $this->configuration['log_table_name'];
+    }
+
+    public function getDefaultEnvironment(): string
+    {
+        if ($this->configuration['default_environment']) {
+            return $this->configuration['default_environment'];
+        }
+        return (string)current(array_keys($this->configuration['environments']));
+    }
+
+    public function getEnvironmentConfig(string $environment): ?EnvironmentConfig
+    {
+        return isset($this->configuration['environments'][$environment]) ? new EnvironmentConfig($this->configuration['environments'][$environment]) : null;
+    }
+}
