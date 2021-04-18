@@ -209,22 +209,39 @@ class User extends Model {
 
 		$db = new Sql();
 
-        $results = $db->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)",
-             array(
-            ":iduser"=>$this->getiduser(),
-            ":desperson"=>$this->getdesperson(),
-            ":deslogin"=>$this->getdeslogin(),
-            ":despassword"=>User::getPasswordHash($this->getdespassword()),
-			//":despassword"=>$this->getdespassword(),
-            ":desemail"=>$this->getdesemail(),
-            ":nrphone"=>$this->getnrphone(),
-            ":inadmin"=>$this->getinadmin()
-        ));
+		if (strlen($this->getdespassword()) >= 5)
+		{
 
-        $this->setData($results[0]);
+			$results = $db->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)",
+            	array(
+            	":iduser"=>$this->getiduser(),
+            	":desperson"=>$this->getdesperson(),
+            	":deslogin"=>$this->getdeslogin(),
+            	":despassword"=>User::getPasswordHash($this->getdespassword()),
+				//":despassword"=>$this->getdespassword(),
+            	":desemail"=>$this->getdesemail(),
+            	":nrphone"=>$this->getnrphone(),
+            	":inadmin"=>$this->getinadmin()
+        	));
 
-    }
+        	$this->setData($results[0]);
 
+		} else {
+
+			$results = $db->select("CALL sp_usersupdate_edit_pass(:iduser, :desperson, :deslogin, :desemail, :nrphone, :inadmin)",
+				array(
+	   			":iduser"=>$this->getiduser(),
+	   			":desperson"=>$this->getdesperson(),
+	   			":deslogin"=>$this->getdeslogin(),
+	   			":desemail"=>$this->getdesemail(),
+	   			":nrphone"=>$this->getnrphone(),
+	   			":inadmin"=>$this->getinadmin()
+   			));
+
+   			$this->setData($results[0]);
+
+		}
+	}
     public function delete() {
 
         $sql = new Sql();
@@ -234,10 +251,6 @@ class User extends Model {
 
         ));
     }
-
-
-
-
 
 	public function setPassword($password)
    {

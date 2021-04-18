@@ -28,27 +28,26 @@
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Name</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Type your name" value="<?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Insert your name" value="<?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               <span class='error-msg name'></span>
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Type your login"  value="<?php echo htmlspecialchars( $user["deslogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Insert your login"  value="<?php echo htmlspecialchars( $user["deslogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               <span class='error-msg login'></span>
             </div>
             <div class="form-group">
               <label for="nrphone">Phone</label>
-              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Type your phone"  value="<?php echo htmlspecialchars( $user["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Insert your phone"  value="<?php echo htmlspecialchars( $user["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
             <div class="form-group">
               <label for="desemail">E-mail</label>
-              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Type your e-mail" value="<?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Insert your e-mail" value="<?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               <span class='error-msg email'></span>
             </div>
             <div class="form-group">
               <label for="despassword">Password</label>
-              <input type="password" class="form-control" id="despassword" name="despassword" placeholder="Type your password">
-              <span class='error-msg passwd'></span>
+              <input type="password" class="form-control" id="despassword" name="despassword" placeholder="Insert your password">
             </div>
             <div class="checkbox">
               <label>

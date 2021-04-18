@@ -33,26 +33,26 @@
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Name</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Type your name">
+              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Insert your name">
               <span class='error-msg name'></span>
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Type your login">
+              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Insert your login">
               <span class='error-msg login'></span>
             </div>
             <div class="form-group">
               <label for="nrphone">Phone</label>
-              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Type your phone">
+              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Insert your phone">
             </div>
             <div class="form-group">
               <label for="desemail">E-mail</label>
-              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Type your e-mail">
+              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Insert your e-mail">
               <span class='error-msg email'></span>
             </div>
             <div class="form-group">
               <label for="despassword">Password</label>
-              <input type="password" class="form-control" id="despassword" name="despassword" placeholder="Type your password">
+              <input type="password" class="form-control" id="despassword" name="despassword" placeholder="Insert your password">
               <span class='error-msg passwd'></span>
             </div>
             <!--<div class="form-group">
