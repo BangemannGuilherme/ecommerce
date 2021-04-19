@@ -37,13 +37,23 @@ $app->get('/admin/login', function() {
 		"footer"=>false
 	]);
 
-	$page->setTpl("login");
+	$page->setTpl("login", [
+		"msgError"=>User::getError()
+	]);
 
 });
 
 $app->post('/admin/login', function() {
 
 	User::login($_POST["login"], $_POST["password"]);
+
+	if(!isset($_GET["error"]) !== 0)
+	{
+		User::setError("Invalid User or Password!");
+
+		header("Location: /admin/login");
+
+	}
 
 	header("Location: /admin");
 	exit;
@@ -53,6 +63,8 @@ $app->post('/admin/login', function() {
 $app->get('/admin/logout', function() {
 	
 	User::logout();
+
+	User::clearError();
 
 	header("Location: /admin/login");
 	exit;

@@ -72,6 +72,8 @@ class User extends Model {
 	public static function login($login, $password)
 	{
 
+		$error = 1;
+
 		$db = new Sql();
 
 		/*$results = $db->select("SELECT * FROM tb_users WHERE deslogin = :LOGIN", array(
@@ -84,19 +86,11 @@ class User extends Model {
 		if (empty($results))
 		{
 			//throw new \Exception("Usuário inexistente ou senha inválida.");
-         	header("Location: /admin/login");
+         	//header("Location: /admin/login");
+			$error += 1;
 
-			return;
+			return $error;
         }
-
-
-		/*if (count($results) === 0) 
-		{
-
-			throw new \Exception("Não foi possível fazer login.");
-
-		}*/
-
 
 		$data = $results[0];
 
@@ -113,11 +107,11 @@ class User extends Model {
 
 			return $user;
 
-		} else {
+		} /*else {
 
 			throw new \Exception("Não foi possível fazer login.");
 
-		}
+		}*/
 
 	}
 
