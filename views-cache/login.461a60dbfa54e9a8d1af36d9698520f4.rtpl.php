@@ -1,4 +1,4 @@
-<!doctype html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!doctype html>
 <html lang="en">
 
   <!-- Favicon -->
@@ -77,12 +77,13 @@
 	            					<button type="submit" class="btn form-control btn-primary rounded submit px-3">SIGN IN</button>
 	            					</div>
 								</div>
-								{if="$msgError != ''"} 
+								<?php if( $msgError != '' ){ ?> 
 								<div class="alert alert-danger alert-dismissible" style="margin: 5px;">
 									<!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true"  style="color: rgb(255, 255, 255)"><b>× (não funfa)</b></button>-->
-									<p> <i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: rgb(255, 255, 255)"></i>&nbsp;<br><b style="color: rgb(255, 255, 255)">{$msgError}</b></br></p>
+									<p> <i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: rgb(255, 255, 255)"></i>&nbsp;<br><b style="color: rgb(255, 255, 255)"><?php echo htmlspecialchars( $msgError, ENT_COMPAT, 'UTF-8', FALSE ); ?></b></br></p>
 								</div>
-								{/if}
+								<?php } ?>
+
 	          				</form>
 	          				<!--<div class="w-100 text-center mt-4 text">
 	          					<p class="mb-0">Don't have an account?</p>

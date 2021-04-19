@@ -19,7 +19,7 @@
   		<div class="box box-primary">
             
             <div class="box-header">
-              <a href="/admin/users/create" class="btn btn-success">User Register</a>
+              <a href="/admin/users/create" class="btn btn-success">Register</a>
             </div>
 
             <div class="box-body no-padding">
