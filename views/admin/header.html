@@ -2,9 +2,16 @@
 <html lang="en">
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="/resources/admin/img/favicon.ico"/>
+<link rel="shortcut icon" href="/resources/admin/img/favicon-games.ico"/>
 
 <head>
+
+    <script language="javascript" type="text/javascript">
+        function windowClose() {
+        window.open('','_parent','');
+        window.close();
+        }
+    </script>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -228,6 +235,12 @@
                                     </div>
                                 </form>
                             </div>
+                        </li>
+
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a href="https://cdn.awsli.com.br/1101/1101329/produto/60525295/5614d9c74a.jpg" class="nav-link dropdown-toggle" onclick="windowClose();">
+                                <img src="https://media.giphy.com/media/11NHi0jvkDvf2g/source.gif" width=60 height=40></i>
+                            </a>
                         </li>
 
                         <!-- Nav Item - Alerts -->
