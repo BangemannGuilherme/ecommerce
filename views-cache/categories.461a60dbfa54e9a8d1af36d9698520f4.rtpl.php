@@ -3,11 +3,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-  &nbsp;&nbsp;Category List
+  &nbsp;&nbsp;Genre List
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i>&nbsp;&nbsp;Home&nbsp;&nbsp;</a></li>
-    <li class="active"><a href="/admin/categories">&nbsp;&nbsp;Categories&nbsp;&nbsp;</a></li>
+    <li class="active"><a href="/admin/categories">&nbsp;&nbsp;Genres&nbsp;&nbsp;</a></li>
   </ol>
 </section>
 
@@ -27,13 +27,12 @@
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-                    <th>Category Name</th>
+                    <th>Genre Name</th>
                     <th style="width: 140px">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php $counter1=-1;  if( isset($categories) && ( is_array($categories) || $categories instanceof Traversable ) && sizeof($categories) ) foreach( $categories as $key1 => $value1 ){ $counter1++; ?>
-
                   <tr>
                     <td><?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
@@ -43,7 +42,6 @@
                     </td>
                   </tr>
                   <?php } ?>
-
                 </tbody>
               </table>
             </div>

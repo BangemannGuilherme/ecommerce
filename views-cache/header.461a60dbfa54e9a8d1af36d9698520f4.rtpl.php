@@ -83,8 +83,15 @@
             <li class="nav-item">
                      <a class="nav-link" href="/admin/categories"> 
                          <i class="fas fa-fw fa-table"></i>
-                         <span>Categories</span></a>
+                         <span>Genres</span></a>
                  </li>
+
+             <!-- Nav Item - Products -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/products"> 
+                    <i class="fas fa-fw fa-gamepad"></i>
+                    <span>Products</span></a>
+            </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <!--<li class="nav-item">
@@ -238,8 +245,9 @@
                         </li>
 
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a href="https://cdn.awsli.com.br/1101/1101329/produto/60525295/5614d9c74a.jpg" class="nav-link dropdown-toggle" onclick="windowClose();">
-                                <img src="https://media.giphy.com/media/11NHi0jvkDvf2g/source.gif" width=60 height=40></i>
+                            <a href="/" class="nav-link dropdown-toggle" onclick="windowClose();">
+                                <i class="fas fa-store fa-fw"></i>
+                                <!--<img src="https://media.giphy.com/media/zVv5XzbQ8GmQw/giphy.gif" width=60 height=40></i>-->
                             </a>
                         </li>
 

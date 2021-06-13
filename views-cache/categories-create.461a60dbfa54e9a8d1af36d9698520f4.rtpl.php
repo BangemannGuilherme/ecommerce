@@ -3,11 +3,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-  &nbsp;&nbsp;Category List
+  &nbsp;&nbsp;Genre List
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i>&nbsp;&nbsp;Home&nbsp;&nbsp;</a></li>
-    <li><a href="/admin/categories">&nbsp;&nbsp;Categories&nbsp;&nbsp;</a></li>
+    <li><a href="/admin/categories">&nbsp;&nbsp;Genres&nbsp;&nbsp;</a></li>
     <li class="active"><a href="/admin/categories/create">&nbsp;&nbsp;Register&nbsp;&nbsp;</a></li>
   </ol>
 </section>
@@ -19,15 +19,15 @@
   	<div class="col-md-12">
   		<div class="box box-success">
         <div class="box-header with-border">
-          <h3 class="box-title">New Category</h3>
+          <h3 class="box-title">New Genre</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
         <form role="form" action="/admin/categories/create" method="post">
           <div class="box-body">
             <div class="form-group">
-              <label for="descategory">Category Name</label>
-              <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Type the name of the category">
+              <label for="descategory">Genre Name</label>
+              <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Type the name of the genre">
             </div>
           </div>
           <!-- /.box-body -->

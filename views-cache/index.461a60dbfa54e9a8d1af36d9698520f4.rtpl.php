@@ -16,15 +16,21 @@
                     <div class="h4 card bg-primary text-white shadow">
                         <div class="card-body">
                             <!--<a style="color:rgb(255, 255, 255);">→ </a>-->
-                            <a href="/admin/categories" title="Categories" style="color:rgb(255, 255, 255);">Categories</a>
+                            <a href="/admin/categories" title="Categories" style="color:rgb(255, 255, 255);">Genres</a>
                         </div>
                     </div>
                     <div class="h4 card bg-primary text-white shadow">
                         <div class="card-body">
                             <!--<a style="color:rgb(255, 255, 255);">→ </a>-->
-                            <a href="/admin/test" title="Test" style="color:rgb(255, 255, 255);">Test</a>
+                            <a href="/admin/products" title="Products" style="color:rgb(255, 255, 255);">Products</a>
                         </div>
                     </div>
+                    <!--<div class="h4 card bg-primary text-white shadow">
+                        <div class="card-body">-->
+                            <!--<a style="color:rgb(255, 255, 255);">→ </a>-->
+                            <!--<a href="/admin/test" title="Test" style="color:rgb(255, 255, 255);">Test</a>
+                        </div>
+                    </div>-->
                     <img src="https://media.giphy.com/media/11NHi0jvkDvf2g/source.gif" width=600 height=400>
                 </p>
         </nav>
