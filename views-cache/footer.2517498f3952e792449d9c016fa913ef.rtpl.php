@@ -31,7 +31,7 @@
                     <ul class="no-bullet">
                         <li><a href="#">Login/Register</a></li>
                         <li><a href="#">Settings</a></li>
-                        <li><a href="#">Cart</a></li>
+                        <li><a href="/cart">Cart</a></li>
                         <li><a href="#">Order Tracking</a></li>
                         <li><a href="#">Logout</a></li>
                     </ul>

@@ -37,7 +37,7 @@
 					</a> <!-- #branding -->
 
 					<div class="right-section pull-right">
-						<a href="/resources/site/cart.html" class="cart"><i class="icon-cart"></i> 0 items in cart</a>
+						<a href="/cart" class="cart"><i class="icon-cart"></i> 0 items in cart</a>
 						<a href="#" class="login-button">Login/Register</a>
 					</div> <!-- .right-section -->
 

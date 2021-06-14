@@ -93,13 +93,10 @@ class Cart extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_carts_save(:idcart, :dessessionid, :iduser, :deszipcode, :vlfreight, :nrdays)", [
+		$results = $sql->select("CALL sp_carts_save(:idcart, :dessessionid, :iduser)", [
 			':idcart'=>$this->getidcart(),
 			':dessessionid'=>$this->getdessessionid(),
-			':iduser'=>$this->getiduser(),
-			':deszipcode'=>$this->getdeszipcode(),
-			':vlfreight'=>$this->getvlfreight(),
-			':nrdays'=>$this->getnrdays()
+			':iduser'=>$this->getiduser()
 		]);
 
 		$this->setData($results[0]);
@@ -147,11 +144,11 @@ class Cart extends Model {
 		$sql = new Sql();
 
 		$rows = $sql->select("
-			SELECT b.idproduct, b.desproduct , b.vlprice, b.vlwidth, b.vlheight, b.vllength, b.vlweight, b.desurl, COUNT(*) AS nrqtd, SUM(b.vlprice) AS vltotal 
+			SELECT b.idproduct, b.desproduct , b.vlprice, b.desurl, COUNT(*) AS nrqtd, SUM(b.vlprice) AS vltotal 
 			FROM tb_cartsproducts a 
 			INNER JOIN tb_products b ON a.idproduct = b.idproduct 
 			WHERE a.idcart = :idcart AND a.dtremoved IS NULL 
-			GROUP BY b.idproduct, b.desproduct , b.vlprice, b.vlwidth, b.vlheight, b.vllength, b.vlweight, b.desurl 
+			GROUP BY b.idproduct, b.desproduct, b.vlprice, b.desurl 
 			ORDER BY b.desproduct
 		", [
 			':idcart'=>$this->getidcart()
@@ -168,7 +165,7 @@ class Cart extends Model {
 		$sql = new Sql();
 
 		$results = $sql->select("
-			SELECT SUM(vlprice) AS vlprice, SUM(vlwidth) AS vlwidth, SUM(vlheight) AS vlheight, SUM(vllength) AS vllength, SUM(vlweight) AS vlweight, COUNT(*) AS nrqtd
+			SELECT SUM(vlprice) AS vlprice, COUNT(*) AS nrqtd
 			FROM tb_products a
 			INNER JOIN tb_cartsproducts b ON a.idproduct = b.idproduct
 			WHERE b.idcart = :idcart AND dtremoved IS NULL;
@@ -183,77 +180,6 @@ class Cart extends Model {
 		}
 
 	}
-
-
-	public function setFreight($nrzipcode)
-	{
-
-		$nrzipcode = str_replace('-', '', $nrzipcode);
-
-		$totals = $this->getProductsTotals();
-
-		if ($totals['nrqtd'] > 0) {
-
-			if ($totals['vlheight'] < 2) $totals['vlheight'] = 2;
-			if ($totals['vllength'] < 16) $totals['vllength'] = 16;
-			//if ($totals['vlwidth'] < 11) $totals['vlwidth'] = 11;
-
-			$qs = http_build_query([
-        		"nCdEmpresa"=>"",
-        		"sDsSenha"=>"",
-        		"nCdServico"=>"40010",
-        		"sCepOrigem"=>"09853120",
-        		"sCepDestino"=>$nrzipcode,
-        		"nVlPeso"=>$totals["vlweight"],
-        		"nCdFormato"=>"1",
-        		"nVlComprimento"=>$totals["vllength"],
-        		"nVlAltura"=>$totals["vlheight"],
-        		"nVlLargura"=>$totals["vlwidth"],
-        		"nVlDiametro"=>"0",
-        		"sCdMaoPropria"=>"S",
-        		"nVlValorDeclarado"=>$totals["vlprice"],
-        		"sCdAvisoRecebimento"=>"S"
-      		]);
-
-
-
-			$xml = simplexml_load_file("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo?".$qs);
-
-
-			//echo json_encode($xml);
-
-			
-			$result = $xml->Servicos->cServico;
-
-			if ($result->MsgErro != '') {
-
-				Cart::setMsgError((string)$result->MsgErro);
-				//return false;
-
-			} else {
-
-				Cart::clearMsgError();
-
-			}
-
-				$this->setnrdays($result->PrazoEntrega);
-				$this->setvlfreight(Cart::formatValueToDecimal($result->Valor));
-				$this->setdeszipcode($nrzipcode);
-
-				$this->save();
-
-				return $result;
-
-			//}
-
-		} else {
-
-
-
-		}
-
-	}
-
 
 	public static function formatValueToDecimal($value):float {
 
@@ -282,15 +208,6 @@ class Cart extends Model {
 		$_SESSION[Cart::SESSION_ERROR] = NULL;
 	}
 
-	public function updateFreight()
-	{
-		
-		if ($this->getdeszipcode() != '') {
-
-			$this->setFreight($this->getdeszipcode());
-
-		}
-	}
 
 	public function getValues()
 	{
@@ -298,18 +215,6 @@ class Cart extends Model {
 		$this->getCalculateTotal();
 
 		return parent::getValues();
-	}
-
-	public function getCalculateTotal()
-	{
-
-		//$this->updateFreight();
-		
-		$totals = $this->getProductsTotals();
-
-		$this->setvlsubtotal($totals['vlprice']);
-		$this->setvltotal($totals['vlprice'] + $this->getvlfreight());
-
 	}
 
 

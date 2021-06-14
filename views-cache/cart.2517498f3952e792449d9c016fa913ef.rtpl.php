@@ -1,4 +1,4 @@
-				</div> <!-- .container -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>				</div> <!-- .container -->
 			</div> <!-- .site-header -->
 			<main class="main-content">
 				<div class="container">

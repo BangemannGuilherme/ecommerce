@@ -8,6 +8,7 @@ use \BangemannGuilherme\PageAdmin;
 use \BangemannGuilherme\Model\User;
 use \BangemannGuilherme\Model\Category;
 use \BangemannGuilherme\Model\Product;
+use \BangemannGuilherme\Model\Cart;
 
 $app = new Slim();
 
@@ -351,6 +352,20 @@ $app->get("/categories/:idcategory", function($idcategory)
 	$page->setTpl("category", [
 		'category'=>$category->getValues(),
 		'products'=>[]
+	]);
+
+});
+
+$app->get("/cart", function() {
+
+	$cart = Cart::getFromSession();
+
+	$page = new Page();
+
+	$page -> setTpl("cart", [
+		'cart'=>$cart->getValues(),
+		'products'=>$cart->getProducts(),
+		'error'=>Cart::getMsgError()
 	]);
 
 });
