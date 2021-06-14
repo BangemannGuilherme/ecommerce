@@ -37,6 +37,14 @@
                     </ul>
                 </div> <!-- .widget -->
             </div> <!-- column -->
+            <div class="col-md-2">
+                <div class="widget">
+                    <h3 class="widget-title">Genres</h3>
+                    <ul class="no-bullet">
+                        <?php require $this->checkTemplate("categories-menu");?>
+                    </ul>
+                </div> <!-- .widget -->
+            </div> <!-- column -->
             <div class="col-md-6">
                 <div class="widget">
                     <h3 class="widget-title">Join our newsletter</h3>
