@@ -34,22 +34,6 @@
               <input type="number" class="form-control" id="vlprice" name="vlprice" step="0.01" placeholder="0.00">
             </div>
             <div class="form-group">
-              <label for="vlwidth">Width</label>
-              <input type="text" class="form-control" id="vlwidth" name="vlwidth" step="0.01" placeholder="0.00">
-            </div>
-            <div class="form-group">
-              <label for="vlheight">Height</label>
-              <input type="number" class="form-control" id="vlheight" name="vlheight" step="0.01" placeholder="0.00">
-            </div>
-            <div class="form-group">
-              <label for="vllength">Length</label>
-              <input type="number" class="form-control" id="vllength" name="vllength" step="0.01" placeholder="0.00">
-            </div>
-            <div class="form-group">
-              <label for="vlweight">Weight</label>
-              <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00">
-            </div>
-            <div class="form-group">
               <label for="desurl">URL</label>
               <input type="text" class="form-control" id="desurl" name="desurl" placeholder="url">
             </div>

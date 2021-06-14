@@ -29,10 +29,6 @@
                     <th style="width: 10px">#</th>
                     <th>Product Name</th>
                     <th>Price</th>
-                    <th>Genre</th>
-                    <!--<th>Height</th>
-                    <th>Lenght</th>
-                    <th>Weight</th>-->
                     <th style="width: 140px">&nbsp;</th>
                   </tr>
                 </thead>
@@ -42,10 +38,6 @@
                     <td>{$value.idproduct}</td>
                     <td>{$value.desproduct}</td>
                     <td>{$value.vlprice}</td>
-                    <td>{$value.vlwidth}</td>
-                    <!--<td>{$value.vlheight}</td>
-                    <td>{$value.vllength}</td>
-                    <td>{$value.vlweight}</td>-->
                     <td>
                       <a href="/admin/products/{$value.idproduct}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
                       <a href="/admin/products/{$value.idproduct}/delete" onclick="return confirm('Are you sure you want to DELETE?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>

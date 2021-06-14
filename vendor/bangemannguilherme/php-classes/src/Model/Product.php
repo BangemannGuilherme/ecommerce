@@ -16,18 +16,28 @@ class Product extends Model {
 
 	}
 
+    public static function checkList($list)
+    {
+
+        foreach ($list as &$row) {
+
+            $r = new Product();
+            $r->setData($row);
+            $row = $r->getValues();
+        }
+
+        return $list;
+
+    }
+
 	public function save()
 	{
 		$db = new Sql();
 
-		$results = $db->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl)", array(
+		$results = $db->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :desurl)", array(
 			":idproduct"=>$this->getidproduct(),
 			":desproduct"=>$this->getdesproduct(),
             ":vlprice"=>$this->getvlprice(),
-            ":vlwidth"=>$this->getvlwidth(),
-            ":vlheight"=>$this->getvlheight(),
-            ":vllength"=>$this->getvllength(),
-            ":vlweight"=>$this->getvlweight(),
             ":desurl"=>$this->getdesurl()
 		));
 
@@ -61,15 +71,16 @@ class Product extends Model {
             $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
             "resources" . DIRECTORY_SEPARATOR . 
             "site" . DIRECTORY_SEPARATOR . 
-            "images" . DIRECTORY_SEPARATOR . 
+            "images" . DIRECTORY_SEPARATOR .
+            "products" . DIRECTORY_SEPARATOR . 
             $this->getidproduct() . ".jpg"
             )) {
 
-            $url = "/resources/site/images/" . $this->getidproduct() . ".jpg";
+            $url = "/resources/site/images/products/" . $this->getidproduct() . ".jpg";
 
         } else {
 
-            $url = "/resources/site/images/error.jpg";
+            $url = "/resources/site/images/products/product.jpg";
 
         }
 
@@ -112,6 +123,7 @@ class Product extends Model {
             "resources" . DIRECTORY_SEPARATOR . 
             "site" . DIRECTORY_SEPARATOR . 
             "images" . DIRECTORY_SEPARATOR . 
+            "products" . DIRECTORY_SEPARATOR .
             $this->getidproduct() . ".jpg";
 
         imagejpeg($image, $dest);
