@@ -56,3 +56,5 @@
 							<label><img src="/resources/site/images/icon-search.png"></label>
 							<input type="text" placeholder="Search...">
 						</div> <!-- .search-form -->
+					</div> <!-- .container -->
+				</div> <!-- .site-header -->

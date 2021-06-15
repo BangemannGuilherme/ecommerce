@@ -1,4 +1,6 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="site-footer">
+<?php if(!class_exists('Rain\Tpl')){exit;}?>        </body>
+    </html>
+<div class="site-footer">
     <div class="container">
         <div class="row">
             <div class="col-md-2">

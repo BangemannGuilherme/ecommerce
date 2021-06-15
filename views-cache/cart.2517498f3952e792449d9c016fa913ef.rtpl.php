@@ -15,69 +15,36 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
+
 								<tr>
 									<td class="product-name">
 										<div class="product-thumbnail">
-											<img src="/resources/site/dummy/cart-thumb-1.jpg" alt="">
+											<a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt=""></a>
 										</div>
 										<div class="product-detail">
-											<h3 class="product-title">GTA V</h3>
+											<h3 href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="product-title"><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nobis architecto dolorum, alias laborum sit odit, saepe expedita similique eius enim quasi obcaecati voluptates, autem eveniet ratione veniam omnis modi.</p>
 										</div>
 									</td>
-									<td class="product-price">$150.00</td>
+									<td class="product-price">$<?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 									<td class="product-qty">
-										<select name="#">
-											<option value="1">1</option>
+										<div class="quantity buttons_added">
+											<input type="button" class="minus" value="-" onclick="window.location.href = '/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete'">
+											<input type="number" size="4" class="input-text qty text" title="Qty" value="<?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" min="0" step="1">
+											<input type="button" class="plus" value="+" onclick="window.location.href = '/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add'">
+										</div>
+										<!--<select name="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add">
+											<option value="<?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
 											<option value="2">2</option>
 											<option value="3">3</option>
-										</select>
+										</select>-->
 									</td>
-									<td class="product-total">$150.00</td>
-									<td class="action"><a href="#"><i class="fa fa-times"></i></a></td>
+									<td class="product-total">$<?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+									<td class="action"><a href="/cart/{value.idproduct}/remove"><i class="fa fa-times"></i></a></td>
 								</tr>
-								<tr>
-									<td class="product-name">
-										<div class="product-thumbnail">
-											<img src="/resources/site/dummy/cart-thumb-2.jpg" alt="">
-										</div>
-										<div class="product-detail">
-											<h3 class="product-title">Big Game Hunter</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nobis architecto dolorum, alias laborum sit odit, saepe expedita similique eius enim quasi obcaecati voluptates, autem eveniet ratione veniam omnis modi.</p>
-										</div>
-									</td>
-									<td class="product-price">$150.00</td>
-									<td class="product-qty">
-										<select name="#">
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-										</select>
-									</td>
-									<td class="product-total">$150.00</td>
-									<td class="action"><a href="#"><i class="fa fa-times"></i></a></td>
-								</tr>
-								<tr>
-									<td class="product-name">
-										<div class="product-thumbnail">
-											<img src="/resources/site/dummy/cart-thumb-3.jpg" alt="">
-										</div>
-										<div class="product-detail">
-											<h3 class="product-title">Meal Gear Solid</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nobis architecto dolorum, alias laborum sit odit, saepe expedita similique eius enim quasi obcaecati voluptates, autem eveniet ratione veniam omnis modi.</p>
-										</div>
-									</td>
-									<td class="product-price">$150.00</td>
-									<td class="product-qty">
-										<select name="#">
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-										</select>
-									</td>
-									<td class="product-total">$150.00</td>
-									<td class="action"><a href="#"><i class="fa fa-times"></i></a></td>
-								</tr>
+								<?php } ?>
+
 							</tbody>
 						</table> <!-- .cart -->
 
@@ -86,7 +53,7 @@
 							<p><strong>Shipment:</strong> $15.00</p>
 							<p class="total"><strong>Total</strong><span class="num">$665.00</span></p>
 							<p>
-								<a href="#" class="button muted">Continue Shopping</a>
+								<a href="/" class="button muted">Continue Shopping</a>
 								<a href="#" class="button">Finalize and pay</a>
 							</p>
 						</div> <!-- .cart-total -->
@@ -95,6 +62,4 @@
 				</div> <!-- .container -->
 			</main> <!-- .main-content -->
 
-	</body>
-
-</html>
+		

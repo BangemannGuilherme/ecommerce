@@ -17,7 +17,7 @@ $app->get('/', function() {
 
 });
 
-$app->get("/category/:idcategory", function($idcategory){
+$app->get("/categories/:idcategory", function($idcategory){
 
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -46,21 +46,36 @@ $app->get("/category/:idcategory", function($idcategory){
 
 });
 
+$app->get("/products/:desurl", function($desurl){
+
+	$product = new Product();
+
+	$product->getFromURL($desurl);
+
+	$page = new Page();
+
+	$page->setTpl("single", [
+		'product'=>$product->getValues(),
+		'categories'=>$product->getCategories()
+	]);
+
+});
+
 $app->get("/cart", function() {
 
 	$cart = Cart::getFromSession();
 
 	$page = new Page();
 
-	$page -> setTpl("cart");/*, [
+	$page -> setTpl("cart", [
 		'cart'=>$cart->getValues(),
 		'products'=>$cart->getProducts(),
 		'error'=>Cart::getMsgError()
-	]);*/
+	]);
 
 });
 
-/*$app->get("/cart/:idproduct/add", function($idproduct) {
+$app->get("/cart/:idproduct/add", function($idproduct) {
 
 	$product = new Product();
 
@@ -112,7 +127,7 @@ $app->get("/cart/:idproduct/deleteall", function($idproduct) {
 });
 
 
-$app->post("/cart/freight", function() {
+/*$app->post("/cart/freight", function() {
 	
 	$cart = Cart::getFromSession();
 

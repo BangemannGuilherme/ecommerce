@@ -133,11 +133,10 @@ class Cart extends Model {
 			':idcart'=>$this->getidcart(),
 			':idproduct'=>$product->getidproduct()
 		]);
-	}
 
-	$this->updateFreight();
-
-}
+	    }
+        
+    }
 
 	public function getProducts() {
 

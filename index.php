@@ -2,7 +2,33 @@
 session_start();
 require_once("vendor/autoload.php");
 
+//require_once("site.php");
+
 use \Slim\Slim;
+
+
+$app = new Slim();
+
+$app->config('debug', true);
+
+require_once("site.php");
+
+require_once("adm.php");
+
+require_once("functions.php");
+
+require_once("adm-user.php");
+
+require_once("adm-category.php");
+
+require_once("adm-product.php");
+
+//require_once("adm-reports.php");
+
+//require_once("adm-orders.php");
+
+
+/*
 use \BangemannGuilherme\Page;
 use \BangemannGuilherme\PageAdmin;
 use \BangemannGuilherme\Model\User;
@@ -354,21 +380,7 @@ $app->get("/categories/:idcategory", function($idcategory)
 		'products'=>[]
 	]);
 
-});
-
-$app->get("/cart", function() {
-
-	$cart = Cart::getFromSession();
-
-	$page = new Page();
-
-	$page -> setTpl("cart", [
-		'cart'=>$cart->getValues(),
-		'products'=>$cart->getProducts(),
-		'error'=>Cart::getMsgError()
-	]);
-
-});
+});*/
 
 
 $app->run();

@@ -71,7 +71,7 @@
 										<h3 class="product-title"><a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></h3>
 										<small class="price">$<?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></small>
 										<!-- <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p> -->
-										<a href="/resources/site/cart.html" class="button">Add to cart</a>
+										<a href="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add" class="button">Add to cart</a>
 										<a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="button muted">Read Details</a>
 									</div>
 								</div> <!-- .product -->
