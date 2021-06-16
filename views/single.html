@@ -10,20 +10,20 @@
 								<div class="col-sm-6 col-md-4">
 									<div class="product-images">
 										<figure class="large-image">
-											<a href="/resources/site/dummy/image-1.jpg"><img src="/resources/site/dummy/single-game-cover.jpg" alt=""></a>
+											<a><img src="{$product.desphoto}"></a>
 										</figure>
-										<div class="thumbnails">
+									<!--<div class="thumbnails">
 											<a href="/resources/site/dummy/image-2.jpg"><img src="/resources/site/dummy/small-thumb-1.jpg" alt=""></a>
 											<a href="/resources/site/dummy/image-3.jpg"><img src="/resources/site/dummy/small-thumb-2.jpg" alt=""></a>
 											<a href="/resources/site/dummy/image-4.jpg"><img src="/resources/site/dummy/small-thumb-3.jpg" alt=""></a>
-										</div>
+										</div>-->
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-8">
 									<h2 class="entry-title">{$product.desproduct}</h2>
 									<small class="price">${$product.vlprice}</small>
 									<div class="product-inner-category">
-										<p>Genres: {loop="$categories"} <a href="/categories/{$value.idcategory}">{$value.descategory}</a>{/loop}.
+										<p>Genres: {loop="$categories"} <a href="/categories/{$value.idcategory}">{$value.descategory}&nbsp;&nbsp;</a>{/loop}.
 									</div>
 
 									<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
@@ -53,7 +53,7 @@
 							</div>
 						</div>
 						
-						<section>
+						<!--<section>
 							<header>
 								<h2 class="section-title">Similiar Product</h2>
 							</header>
@@ -69,7 +69,7 @@
 										<a href="#" class="button">Add to cart</a>
 										<a href="#" class="button muted">Read Details</a>
 									</div>
-								</div> <!-- .product -->
+								</div> <!-- .product 
 							
 								<div class="product">
 									<div class="inner-product">
@@ -82,7 +82,7 @@
 										<a href="#" class="button">Add to cart</a>
 										<a href="#" class="button muted">Read Details</a>
 									</div>
-								</div> <!-- .product -->
+								</div> <!-- .product 
 							
 								<div class="product">
 									<div class="inner-product">
@@ -95,7 +95,7 @@
 										<a href="#" class="button">Add to cart</a>
 										<a href="#" class="button muted">Read Details</a>
 									</div>
-								</div> <!-- .product -->
+								</div> <!-- .product 
 							
 								<div class="product">
 									<div class="inner-product">
@@ -108,9 +108,10 @@
 										<a href="#" class="button">Add to cart</a>
 										<a href="#" class="button muted">Read Details</a>
 									</div>
-								</div> <!-- .product -->
+								</div> <!-- .product
 								
-							</div> <!-- .product-list --></section>
+							</div> <!-- .product-list 
+						</section>-->
 
 						
 					</div>
