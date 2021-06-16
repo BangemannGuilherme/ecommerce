@@ -4,6 +4,8 @@ use \BangemannGuilherme\Page;
 use \BangemannGuilherme\Model\Product;
 use \BangemannGuilherme\Model\Category;
 use \BangemannGuilherme\Model\Cart;
+use \BangemannGuilherme\Model\User;
+use \BangemannGuilherme\Model\Mail;
 
 $app->get('/', function() {
 
@@ -75,6 +77,21 @@ $app->get("/cart", function() {
 
 });
 
+/*$app->get("/cart/:idproduct/add", function($idproduct) {
+
+	$product = new Product();
+
+	$product->get((int)$idproduct);
+
+	$cart = Cart::getFromSession();
+
+	$cart->addProduct($product);
+
+	header("Location: /cart");
+	exit;
+
+});*/
+
 $app->get("/cart/:idproduct/add", function($idproduct) {
 
 	$product = new Product();
@@ -89,7 +106,6 @@ $app->get("/cart/:idproduct/add", function($idproduct) {
 		
 		$cart->addProduct($product);	
 	}
-
 
 	header("Location: /cart");
 	exit;
@@ -119,31 +135,18 @@ $app->get("/cart/:idproduct/deleteall", function($idproduct) {
 
 	$cart = Cart::getFromSession();
 
-	$cart->addProduct($product, true);
+	$cart->removeProduct($product, true);
 
 	header("Location: /cart");
 	exit;
 
 });
 
-
-/*$app->post("/cart/freight", function() {
-	
-	$cart = Cart::getFromSession();
-
-	$cart->setFreight($_POST['zipcode']);
-
-	header("Location: /cart");
-	exit;
-
-});
-
-
-$app->get("/checkout", function() {
+/*$app->get("/checkout", function() {
 
 	User::verifyLogin(false);
 
-	$address = new Address();
+	$mail = new Mail();
 
 	$cart = Cart::getFromSession();
 
@@ -165,7 +168,7 @@ $app->get("/checkout", function() {
 
 	}
 
-	if (!$address->getdesaddress()) $address->setdesaddress('');
+	if (!$mail->getdesaddress()) $mail->setdesaddress('');
 	if (!$address->getdescomplement()) $address->setdescomplement('');
 	if (!$address->getdesdistrict()) $address->setdesdistrict('');
 	if (!$address->getdescity()) $address->setdescity('');
@@ -177,15 +180,15 @@ $app->get("/checkout", function() {
 
 	$page->setTpl("checkout", [
 		'cart'=>$cart->getValues(),
-		'address'=>$address->getValues(),
+		'address'=>$mail->getValues(),
 		'products'=>$cart->getProducts(),
-		'error'=>Address::getMsgError()
+		'error'=>Mail::getMsgError()
 	]);
 
 });
 
 
-$app->post("/checkout", function(){
+/*$app->post("/checkout", function(){
 
 	User::verifyLogin(false);
 

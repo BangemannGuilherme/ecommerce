@@ -28,10 +28,10 @@
 										</div>
 									</td>
 									<td class="product-price">$<?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-									<td class="product-qty">
+									<td class="product-quantity">
 										<div class="quantity buttons_added">
 											<input type="button" class="minus" value="-" onclick="window.location.href = '/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete'">
-											<input type="number" size="4" class="input-text qty text" title="Qty" value="<?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" min="0" step="1">
+											<input type="text" onkeypress="return onlynumber();" size="4" class="input-text qty text" title="Quantity" value="<?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" min="0" step="1">
 											<input type="button" class="plus" value="+" onclick="window.location.href = '/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add'">
 										</div>
 										<!--<select name="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add">
@@ -40,8 +40,8 @@
 											<option value="3">3</option>
 										</select>-->
 									</td>
-									<td class="product-total">$<?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-									<td class="action"><a href="/cart/{value.idproduct}/remove"><i class="fa fa-times"></i></a></td>
+									<td class="product-total"><b>$<?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></td>
+									<td class="action"><a href="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deleteall"><i class="fa fa-times"></i></a></td>
 								</tr>
 								<?php } ?>
 
@@ -49,9 +49,9 @@
 						</table> <!-- .cart -->
 
 						<div class="cart-total">
-							<p><strong>Subtotal:</strong> $650.00</p>
-							<p><strong>Shipment:</strong> $15.00</p>
-							<p class="total"><strong>Total</strong><span class="num">$665.00</span></p>
+							<p><strong>Subtotal:</strong> $<?php echo htmlspecialchars( $cart["vlsubtotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+							<p><strong>Shipment:</strong> $00.00</p>
+							<p class="total"><strong>Total</strong><span class="num">$<?php echo htmlspecialchars( $cart["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></p>
 							<p>
 								<a href="/" class="button muted">Continue Shopping</a>
 								<a href="#" class="button">Finalize and pay</a>
@@ -61,5 +61,23 @@
 					</div>
 				</div> <!-- .container -->
 			</main> <!-- .main-content -->
+
+
+
+			<script> 
+			
+			function onlynumber(evt) {
+				var theEvent = evt || window.event;
+				var key = theEvent.keyCode || theEvent.which;
+				key = String.fromCharCode( key );
+				//var regex = /^[0-9.,]+$/;
+				var regex = /^[0-9.]+$/;
+				if( !regex.test(key) ) {
+				   theEvent.returnValue = false;
+				   if(theEvent.preventDefault) theEvent.preventDefault();
+				}
+			 }
+
+			</script>
 
 		

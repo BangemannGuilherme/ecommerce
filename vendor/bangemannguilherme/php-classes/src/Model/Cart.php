@@ -57,9 +57,9 @@ class Cart extends Model {
 
 	public function getFromSessionID() {
 
-		$sql = new Sql();
+		$db = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_carts WHERE dessessionid = :dessessionid", [
+		$results = $db->select("SELECT * FROM tb_carts WHERE dessessionid = :dessessionid", [
 			':dessessionid'=>session_id()
 		]);
 
@@ -74,9 +74,9 @@ class Cart extends Model {
 
 	public function get(int $idcart) {
 
-		$sql = new Sql();
+		$db = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_carts WHERE idcart = :idcart", [
+		$results = $db->select("SELECT * FROM tb_carts WHERE idcart = :idcart", [
 			':idcart'=>$idcart
 		]);
 
@@ -91,9 +91,9 @@ class Cart extends Model {
 	public function save()
 	{
 
-		$sql = new Sql();
+		$db = new Sql();
 
-		$results = $sql->select("CALL sp_carts_save(:idcart, :dessessionid, :iduser)", [
+		$results = $db->select("CALL sp_carts_save(:idcart, :dessessionid, :iduser)", [
 			':idcart'=>$this->getidcart(),
 			':dessessionid'=>$this->getdessessionid(),
 			':iduser'=>$this->getiduser()
@@ -106,43 +106,46 @@ class Cart extends Model {
 
 	public function addProduct(Product $product) {
 
-		$sql = new Sql();
+		$db = new Sql();
 
-		$sql->query("INSERT INTO tb_cartsproducts (idcart, idproduct) VALUES(:idcart, :idproduct)", [
+		$db->query("INSERT INTO tb_cartsproducts (idcart, idproduct) VALUES(:idcart, :idproduct)", [
 			':idcart'=>$this->getidcart(),
 			':idproduct'=>$product->getidproduct()
 		]);
 
-		//$this->updateFreight();
+        $this->getCalculateTotal();
+
 	}
 
 	public function removeProduct(Product $product, $all = false) {
 
-		$sql = new Sql();
+		$db = new Sql();
 
 		if ($all) {
 
-		$sql->query("UPDATE tb_cartsproducts SET dtremoved = NOW() WHERE idcart = :idcart AND idproduct = :idproduct AND dtremoved IS NULL", [
+		$db->query("UPDATE tb_cartsproducts SET dtremoved = NOW() WHERE idcart = :idcart AND idproduct = :idproduct AND dtremoved IS NULL", [
 			':idcart'=>$this->getidcart(),
 			':idproduct'=>$product->getidproduct()
 		]);
 
 		} else {
 
-		$sql->query("UPDATE tb_cartsproducts SET dtremoved = NOW() WHERE idcart = :idcart AND idproduct = :idproduct AND dtremoved IS NULL LIMIT 1", [
+		$db->query("UPDATE tb_cartsproducts SET dtremoved = NOW() WHERE idcart = :idcart AND idproduct = :idproduct AND dtremoved IS NULL LIMIT 1", [
 			':idcart'=>$this->getidcart(),
 			':idproduct'=>$product->getidproduct()
 		]);
 
 	    }
-        
+
+        $this->getCalculateTotal();
+
     }
 
 	public function getProducts() {
 
-		$sql = new Sql();
+		$db = new Sql();
 
-		$rows = $sql->select("
+		$rows = $db->select("
 			SELECT b.idproduct, b.desproduct , b.vlprice, b.desurl, COUNT(*) AS nrqtd, SUM(b.vlprice) AS vltotal 
 			FROM tb_cartsproducts a 
 			INNER JOIN tb_products b ON a.idproduct = b.idproduct 
@@ -153,7 +156,6 @@ class Cart extends Model {
 			':idcart'=>$this->getidcart()
 		]);
 
-
 		return Product::checkList($rows);
 
 	}
@@ -161,9 +163,9 @@ class Cart extends Model {
 	public function getProductsTotals()
 	{
 
-		$sql = new Sql();
+		$db = new Sql();
 
-		$results = $sql->select("
+		$results = $db->select("
 			SELECT SUM(vlprice) AS vlprice, COUNT(*) AS nrqtd
 			FROM tb_products a
 			INNER JOIN tb_cartsproducts b ON a.idproduct = b.idproduct
@@ -216,6 +218,14 @@ class Cart extends Model {
 		return parent::getValues();
 	}
 
+    public function getCalculateTotal()
+    {
+
+        $totals = $this->getProductsTotals();
+
+        $this->setvlsubtotal($totals['vlprice']);
+        $this->setvltotal($totals['vlprice']);
+    }
 
 }
 
