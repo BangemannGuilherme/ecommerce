@@ -5,7 +5,7 @@ use \BangemannGuilherme\Model\Product;
 use \BangemannGuilherme\Model\Category;
 use \BangemannGuilherme\Model\Cart;
 use \BangemannGuilherme\Model\User;
-use \BangemannGuilherme\Model\Mail;
+use \BangemannGuilherme\Model\Address;
 
 $app->get('/', function() {
 
@@ -142,11 +142,11 @@ $app->get("/cart/:idproduct/deleteall", function($idproduct) {
 
 });
 
-/*$app->get("/checkout", function() {
+$app->get("/checkout", function() {
 
 	User::verifyLogin(false);
 
-	$mail = new Mail();
+	$address = new Address();
 
 	$cart = Cart::getFromSession();
 
@@ -168,7 +168,7 @@ $app->get("/cart/:idproduct/deleteall", function($idproduct) {
 
 	}
 
-	if (!$mail->getdesaddress()) $mail->setdesaddress('');
+	if (!$address->getdesaddress()) $address->setdesaddress('');
 	if (!$address->getdescomplement()) $address->setdescomplement('');
 	if (!$address->getdesdistrict()) $address->setdesdistrict('');
 	if (!$address->getdescity()) $address->setdescity('');
@@ -180,9 +180,9 @@ $app->get("/cart/:idproduct/deleteall", function($idproduct) {
 
 	$page->setTpl("checkout", [
 		'cart'=>$cart->getValues(),
-		'address'=>$mail->getValues(),
+		'address'=>$address->getValues(),
 		'products'=>$cart->getProducts(),
-		'error'=>Mail::getMsgError()
+		'error'=>Address::getMsgError()
 	]);
 
 });

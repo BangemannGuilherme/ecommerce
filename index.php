@@ -2,7 +2,6 @@
 session_start();
 require_once("vendor/autoload.php");
 
-//require_once("site.php");
 
 use \Slim\Slim;
 
@@ -22,6 +21,8 @@ require_once("adm-user.php");
 require_once("adm-category.php");
 
 require_once("adm-product.php");
+
+require_once("functions.php");
 
 //require_once("adm-reports.php");
 
