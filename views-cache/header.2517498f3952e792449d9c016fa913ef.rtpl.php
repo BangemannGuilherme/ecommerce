@@ -41,7 +41,12 @@
 
 					<div class="right-section pull-right">
 						<a href="/cart" class="cart"><i class="icon-cart"></i> 0 items in cart</a>
-						<a href="#" class="login-button">Login/Register</a>
+						<?php if( checkLogin(false) ){ ?>
+						<a href="/profile" class="profile"><i class="fa fa-user"></i>&ThickSpace;&ThickSpace; <?php echo getUserName(); ?> - Profile</a>
+						<a href="/logout" class="logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+						<?php }else{ ?>
+						<a href="/login" class="login-button"><i class="fas fa-sign-in-alt"></i>Login/Register</a>
+						<?php } ?>
 					</div> <!-- .right-section -->
 
 					<div class="main-navigation">

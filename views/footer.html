@@ -31,7 +31,7 @@
                 <div class="widget">
                     <h3 class="widget-title">My Account</h3>
                     <ul class="no-bullet">
-                        <li><a href="#">Login/Register</a></li>
+                        <li><a href="/login">Login/Register</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="/cart">Cart</a></li>
                         <li><a href="#">Order Tracking</a></li>
@@ -79,7 +79,7 @@
     <div class="col-md-6">
         <h2 class="section-title">Login</h2>
         <form action="#">
-            <input type="text" placeholder="Username...">
+            <input type="text" placeholder="Email address...">
             <input type="password" placeholder="Password...">
             <input type="submit" value="Login">
         </form>
@@ -87,9 +87,11 @@
     <div class="col-md-6">
         <h2 class="section-title">Create an account</h2>
         <form action="#">
-            <input type="text" placeholder="Username...">
+            <input type="text" placeholder="Name...">
             <input type="text" placeholder="Email address...">
-            <input type="submit" value="register">
+            <input type="text" placeholder="Phone...">
+            <input type="password" placeholder="Password...">
+            <input type="submit" value="Register">
         </form>
     </div> <!-- .column -->
 </div> <!-- .row -->

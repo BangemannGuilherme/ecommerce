@@ -4,7 +4,7 @@
 				<div class="container">
 					<div class="page">
 						
-						<table class="cart">
+						<!--<table class="cart">
 							<thead>
 								<tr>
 									<th class="product-name">Product Name</th>
@@ -34,11 +34,6 @@
 											<input type="text" onkeypress="return onlynumber();" size="4" class="input-text qty text" title="Quantity" value="<?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" min="0" step="1">
 											<input type="button" class="plus" value="+" onclick="window.location.href = '/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add'">
 										</div>
-										<!--<select name="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add">
-											<option value="<?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-										</select>-->
 									</td>
 									<td class="product-total"><b>$<?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></td>
 									<td class="action"><a href="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deleteall"><i class="fa fa-times"></i></a></td>
@@ -46,15 +41,22 @@
 								<?php } ?>
 
 							</tbody>
-						</table> <!-- .cart -->
+						</table> .cart -->
 
 						<div class="cart-total">
 							<p><strong>Subtotal:</strong> $<?php echo htmlspecialchars( $cart["vlsubtotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
 							<p><strong>Shipment:</strong> $00.00</p>
 							<p class="total"><strong>Total</strong><span class="num">$<?php echo htmlspecialchars( $cart["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></p>
 							<p>
-								<a href="/" class="button muted">Continue Shopping</a>
-								<a href="/checkout" class="button">Finalize and pay</a>
+								<form action="/checkout" class="checkout" method="post" name="checkout">
+									<div id="payment">
+										<div class="form-row place-order">
+											<input type="submit" data-value="Place order" value="Finalize and pay" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+										</div>
+										<div class="clear"></div>
+									</div>
+									<!--<a href="#" class="button">Finalize and pay</a>-->
+								</form>
 							</p>
 						</div> <!-- .cart-total -->
 						
