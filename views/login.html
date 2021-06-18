@@ -79,22 +79,28 @@
             </div>
             <div class="col-md-6">
 
+                {if="$errorRegister != ''"}
+                <div class="alert alert-danger">
+                {$errorRegister}
+                </div>
+                {/if}
+
                 <form id="register-form-wrap" action="/register" class="register" method="post">
                     <h2>Create an account</h2>
                     <p class="form-row form-row-first">
                         <label for="name"><b>Full name</b> <span class="required" ><b>*</b><br></span>
                         </label>
-                        <input type="text" id="nome" name="name" class="input-text" value="">
+                        <input type="text" id="nome" name="name" class="input-text" value="{$registerValues.name}">
                     </p>
                     <p class="form-row form-row-first">
                         <label for="email"><b>E-mail Address</b> <span class="required" ><b>*</b><br></span>
                         </label>
-                        <input type="email" id="email" name="email" class="input-text" value="">
+                        <input type="email" id="email" name="email" class="input-text" value="{$registerValues.email}">
                     </p>
                     <p class="form-row form-row-first">
                         <label for="phone"><b>Phone Number</b><br>
                         </label>
-                        <input type="text" id="phone" name="phone" class="input-text" value="">
+                        <input type="text" id="phone" name="phone" class="input-text" value="{$registerValues.phone}">
                     </p>
                     <p class="form-row form-row-last">
                         <label for="password"><b>Password</b> <span class="required" ><b>*</b><br></span>

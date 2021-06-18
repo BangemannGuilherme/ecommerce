@@ -82,22 +82,31 @@
             </div>
             <div class="col-md-6">
 
+                <?php if( $errorRegister != '' ){ ?>
+
+                <div class="alert alert-danger">
+                <?php echo htmlspecialchars( $errorRegister, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                </div>
+                <?php } ?>
+
+
                 <form id="register-form-wrap" action="/register" class="register" method="post">
                     <h2>Create an account</h2>
                     <p class="form-row form-row-first">
                         <label for="name"><b>Full name</b> <span class="required" ><b>*</b><br></span>
                         </label>
-                        <input type="text" id="nome" name="name" class="input-text" value="">
+                        <input type="text" id="nome" name="name" class="input-text" value="<?php echo htmlspecialchars( $registerValues["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
                     <p class="form-row form-row-first">
                         <label for="email"><b>E-mail Address</b> <span class="required" ><b>*</b><br></span>
                         </label>
-                        <input type="email" id="email" name="email" class="input-text" value="">
+                        <input type="email" id="email" name="email" class="input-text" value="<?php echo htmlspecialchars( $registerValues["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
                     <p class="form-row form-row-first">
                         <label for="phone"><b>Phone Number</b><br>
                         </label>
-                        <input type="text" id="phone" name="phone" class="input-text" value="">
+                        <input type="text" id="phone" name="phone" class="input-text" value="<?php echo htmlspecialchars( $registerValues["phone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
                     <p class="form-row form-row-last">
                         <label for="password"><b>Password</b> <span class="required" ><b>*</b><br></span>

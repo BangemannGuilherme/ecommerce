@@ -337,7 +337,7 @@ $app->post("/register", function(){
 
 });*/
 
-/*$app->get("/profile", function(){
+$app->get("/profile", function(){
 
 	User::verifyLogin(false);
 
@@ -351,9 +351,9 @@ $app->post("/register", function(){
 		'profileError'=>User::getError()
 	]);
 
-});*/
+});
 
-/*$app->post("/profile", function(){
+$app->post("/profile", function(){
 
 	User::verifyLogin(false);
 
@@ -373,7 +373,7 @@ $app->post("/register", function(){
 
 	if ($_POST['desemail'] !== $user->getdesemail()) {
 
-		if (User::checkLoginExists($_POST['desemail']) === true) {
+		if (User::checkLoginExist($_POST['desemail']) === true) {
 
 			User::setError("Este endereço de e-mail já está cadastrado.");
 			header('Location: /profile');
@@ -383,20 +383,23 @@ $app->post("/register", function(){
 
 	}
 
+	$_POST['iduser'] = $user->getiduser();
 	$_POST['inadmin'] = $user->getinadmin();
 	$_POST['despassword'] = $user->getdespassword();
 	$_POST['deslogin'] = $_POST['desemail'];
 
 	$user->setData($_POST);
 
-	$user->save();
+	$user->update(false);
+
+	$_SESSION[User::SESSION] = $user->getValues();
 
 	User::setSuccess("Dados alterados com sucesso!");
 
 	header('Location: /profile');
 	exit;
 
-});*/
+});
 
 /*$app->get("/checkout", function() {
 
