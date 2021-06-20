@@ -12,6 +12,11 @@ class OrderStatus extends Model {
 	const PAGO = 3;
 	const ENTREGUE = 4;
 
+	/*const OPEN = 1;
+	const WAITING_PAYMENT = 2;
+	const PAID = 3;
+	const DONE = 4;*/
+
 	public static function listAll()
 	{
 

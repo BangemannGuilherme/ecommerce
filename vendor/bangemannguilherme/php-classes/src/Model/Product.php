@@ -159,6 +159,113 @@ class Product extends Model {
 
     }
 
+    public static function getPage($page = 1, $itemsPerPage = 8)
+    {
+
+        $start = ($page - 1) * $itemsPerPage;
+
+        $sql = new Sql();
+
+        $results = $sql->select("
+            SELECT SQL_CALC_FOUND_ROWS *
+            FROM tb_products 
+            ORDER BY desproduct
+            LIMIT $start, $itemsPerPage;
+        ");
+
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+        foreach ($results as &$result) {
+            
+        $result['desphoto'] = "/resources/site/images/products/" .$result['idproduct'] . ".jpg";
+ 
+        }
+
+        return [
+            'data'=>Product::checkList($results),
+            'total'=>(int)$resultTotal[0]["nrtotal"],
+            'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+        ];
+
+    }
+
+    public static function getPageSearch($search, $page = 1, $itemsPerPage = 8)
+    {
+
+        $start = ($page - 1) * $itemsPerPage;
+
+        $sql = new Sql();
+
+
+        $results = $sql->select("
+            SELECT SQL_CALC_FOUND_ROWS *
+            FROM tb_products
+            WHERE desproduct LIKE :search 
+            ORDER BY desproduct
+            LIMIT $start, $itemsPerPage;
+        ", [
+            ':search'=>'%'.$search.'%'
+        ]);
+
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+        foreach ($results as &$result) {
+            
+        $result['desphoto'] = "/resources/site/images/products/" .$result['idproduct'] . ".jpg";
+ 
+        }
+
+        return [
+            'data'=>Product::checkList($results),
+            'total'=>(int)$resultTotal[0]["nrtotal"],
+            'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+        ];
+
+    }
+
+
+        public static function getPageSearchBox($id, $nome, $preco, $page = 1, $itemsPerPage = 8)
+    {
+
+        $start = ($page - 1) * $itemsPerPage;
+
+        $sql = new Sql();
+
+
+        $results = $sql->select("
+            SELECT SQL_CALC_FOUND_ROWS *
+            FROM tb_products
+            WHERE idproduct LIKE :id
+			AND desproduct LIKE :nome
+			AND vlprice LIKE :preco
+            ORDER BY desproduct
+            LIMIT $start, $itemsPerPage;
+        ", [
+            ':id'=>'%'.$id.'%',
+            ':nome'=>'%'.$nome.'%',
+            ':preco'=>'%'.$preco.'%'
+        ]);
+
+        //var_dump($results);
+        //exit;
+
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+        foreach ($results as &$result) {
+            
+        $result['desphoto'] = "/resources/site/images/products/" .$result['idproduct'] . ".jpg";
+ 
+        }
+
+        return [
+            'data'=>Product::checkList($results),
+            'total'=>(int)$resultTotal[0]["nrtotal"],
+            'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage),
+        ];
+
+    }
+
+
 }
 
  ?>

@@ -8,7 +8,7 @@ use \BangemannGuilherme\Model;
 
 class Address extends Model {
 
-	/*const SESSION_ERROR = "AddressError";
+	const SESSION_ERROR = "AddressError";
 
 	public static function getCEP($nrcep) {
 
@@ -94,7 +94,7 @@ class Address extends Model {
 
 		$_SESSION[Address::SESSION_ERROR] = NULL;
 
-	}*/
+	}
 
 }
 

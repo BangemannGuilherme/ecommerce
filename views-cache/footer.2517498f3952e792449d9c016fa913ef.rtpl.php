@@ -7,11 +7,11 @@
                 <div class="widget">
                     <h3 class="widget-title">Information</h3>
                     <ul class="no-bullet">
-                        <li><a href="#">Site map</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="/">Site map</a></li>
+                        <li><a href="/">About us</a></li>
+                        <li><a href="/">FAQ</a></li>
+                        <li><a href="/">Privacy Policy</a></li>
+                        <li><a href="/">Contact</a></li>
                     </ul>
                 </div> <!-- .widget -->
             </div> <!-- column -->
@@ -19,11 +19,11 @@
                 <div class="widget">
                     <h3 class="widget-title">Consumer Service</h3>
                     <ul class="no-bullet">
-                        <li><a href="#">Secure</a></li>
-                        <li><a href="#">Shipping &amp; Returns</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Orders &amp; Returns</a></li>
-                        <li><a href="#">Group Sales</a></li>
+                        <li><a href="/">Secure</a></li>
+                        <li><a href="/">Shipping &amp; Returns</a></li>
+                        <li><a href="/">Shipping</a></li>
+                        <li><a href="/">Orders &amp; Returns</a></li>
+                        <li><a href="/">Group Sales</a></li>
                     </ul>
                 </div> <!-- .widget -->
             </div> <!-- column -->
@@ -32,10 +32,10 @@
                     <h3 class="widget-title">My Account</h3>
                     <ul class="no-bullet">
                         <li><a href="/login">Login/Register</a></li>
-                        <li><a href="#">Settings</a></li>
+                        <li><a href="/">Settings</a></li>
                         <li><a href="/cart">Cart</a></li>
-                        <li><a href="#">Order Tracking</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="/">Order Tracking</a></li>
+                        <li><a href="/logout">Logout</a></li>
                     </ul>
                 </div> <!-- .widget -->
             </div> <!-- column -->

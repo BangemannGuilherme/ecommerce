@@ -22,6 +22,58 @@ $app->get('/', function() {
 
 });
 
+$app->get("/products", function(){
+
+	//User::verifyLogin();
+
+
+
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+
+
+	if ($search != '') {
+
+		$pagination = Product::getPageSearch($search, $page);
+
+
+	} else {
+
+		$pagination = Product::getPage($page);
+
+
+	}
+
+
+	$pages = [];
+
+	for ($x = 0; $x < $pagination['pages']; $x++)
+	{
+
+		array_push($pages, [
+			'href'=>'/products?'.http_build_query([
+				'page'=>$x+1,
+				'search'=>$search
+			]),
+			'text'=>$x+1
+		]);
+
+	} 
+
+
+
+	$page = new Page();
+
+
+  	$page->setTpl("products", [
+		"products"=>$pagination['data'],
+		"search"=>$search,
+		"pages"=>$pages
+	]);
+
+});
+
 $app->get("/categories/:idcategory", function($idcategory){
 
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -79,21 +131,6 @@ $app->get("/cart", function() {
 	]);
 
 });
-
-/*$app->get("/cart/:idproduct/add", function($idproduct) {
-
-	$product = new Product();
-
-	$product->get((int)$idproduct);
-
-	$cart = Cart::getFromSession();
-
-	$cart->addProduct($product);
-
-	header("Location: /cart");
-	exit;
-
-});*/
 
 $app->get("/cart/:idproduct/add", function($idproduct) {
 
@@ -163,16 +200,127 @@ $app->get("/checkout", function() {
 
 	User::verifyLogin(false);
 
+	$address = new Address();
+
 	$cart = Cart::getFromSession();
 
- 	$address = new Address();
+	if (!isset($_GET['zipcode'])) {
+
+		$_GET['zipcode'] = $cart->getdeszipcode();
+
+	}
+
+	if (isset($_GET['zipcode'])) {
+
+		$address->loadFromCEP($_GET['zipcode']);
+
+		$cart->setdeszipcode($_GET['zipcode']);
+
+		$cart->save();
+
+		$cart->getCalculateTotal();
+
+	}
+
+	if (!$address->getdesaddress()) $address->setdesaddress('');
+	if (!$address->getdescomplement()) $address->setdescomplement('');
+	if (!$address->getdesdistrict()) $address->setdesdistrict('');
+	if (!$address->getdescity()) $address->setdescity('');
+	if (!$address->getdesstate()) $address->setdesstate('');
+	if (!$address->getdescountry()) $address->setdescountry('');
+	if (!$address->getdeszipcode()) $address->setdeszipcode('');
 
 	$page = new Page();
 
 	$page->setTpl("checkout", [
 		'cart'=>$cart->getValues(),
-		'address'=>$address->getValues()
+		'address'=>$address->getValues(),
+		'products'=>$cart->getProducts(),
+		'error'=>Address::getMsgError()
 	]);
+
+});
+
+
+$app->post("/checkout", function(){
+
+	User::verifyLogin(false);
+
+	if (!isset($_POST['zipcode']) || $_POST['zipcode'] === '') {
+		Address::setMsgError("Informe o CEP.");
+		header('Location: /checkout');
+		exit;
+	}
+
+	if (!isset($_POST['desaddress']) || $_POST['desaddress'] === '') {
+		Address::setMsgError("Informe o endereço.");
+		header('Location: /checkout');
+		exit;
+	}
+
+	if (!isset($_POST['desdistrict']) || $_POST['desdistrict'] === '') {
+		Address::setMsgError("Informe o bairro.");
+		header('Location: /checkout');
+		exit;
+	}
+
+	if (!isset($_POST['descity']) || $_POST['descity'] === '') {
+		Address::setMsgError("Informe a cidade.");
+		header('Location: /checkout');
+		exit;
+	}
+
+	if (!isset($_POST['desstate']) || $_POST['desstate'] === '') {
+		Address::setMsgError("Informe o estado.");
+		header('Location: /checkout');
+		exit;
+	}
+
+	if (!isset($_POST['descountry']) || $_POST['descountry'] === '') {
+		Address::setMsgError("Informe o país.");
+		header('Location: /checkout');
+		exit;
+	}
+
+	$user = User::getFromSession();
+
+	$address = new Address();
+
+	$_POST['deszipcode'] = $_POST['zipcode'];
+	$_POST['idperson'] = $user->getidperson();
+
+	$address->setData($_POST);
+
+	$address->save();
+
+	$cart = Cart::getFromSession();
+
+	$totals = $cart->getCalculateTotal();
+
+	$order = new Order();
+
+	$order->setData([
+		'idcart'=>$cart->getidcart(),
+		'idaddress'=>$address->getidaddress(),
+		'iduser'=>$user->getiduser(),
+		'idstatus'=>OrderStatus::EM_ABERTO,
+		'vltotal'=>$cart->getvltotal()
+	]);
+
+	$order->save();
+
+	header("Location: /order/".$order->getidorder());
+
+	/*switch ((int)$_POST['payment-method']) {
+		case 1:
+		header("Location: /order/".$order->getidorder()."/pagseguro");
+		break;
+		case 2:
+		header("Location: /order/".$order->getidorder()."/paypal");
+		break;
+	}*/
+
+	exit;
 
 });
 
@@ -278,65 +426,6 @@ $app->post("/register", function(){
 
 });
 
-/*$app->get("/forgot", function() {
-
-	$page = new Page();
-
-	$page->setTpl("forgot");	
-
-});*/
-
-/*$app->post("/forgot", function(){
-
-	$user = User::getForgot($_POST["email"], false);
-
-	header("Location: /forgot/sent");
-	exit;
-
-});*/
-
-/*$app->get("/forgot/sent", function(){
-
-	$page = new Page();
-
-	$page->setTpl("forgot-sent");	
-
-});*/
-
-
-/*$app->get("/forgot/reset", function(){
-
-	$user = User::validForgotDecrypt($_GET["code"]);
-
-	$page = new Page();
-
-	$page->setTpl("forgot-reset", array(
-		"name"=>$user["desperson"],
-		"code"=>$_GET["code"]
-	));
-
-});*/
-
-/*$app->post("/forgot/reset", function(){
-
-	$forgot = User::validForgotDecrypt($_POST["code"]);	
-
-	User::setFogotUsed($forgot["idrecovery"]);
-
-	$user = new User();
-
-	$user->get((int)$forgot["iduser"]);
-
-	$password = User::getPasswordHash($_POST["password"]);
-
-	$user->setPassword($password);
-
-	$page = new Page();
-
-	$page->setTpl("forgot-reset-success");
-
-});*/
-
 $app->get("/profile", function(){
 
 	User::verifyLogin(false);
@@ -358,13 +447,13 @@ $app->post("/profile", function(){
 	User::verifyLogin(false);
 
 	if (!isset($_POST['desperson']) || $_POST['desperson'] === '') {
-		User::setError("Preencha o seu nome.");
+		User::setError("Please, insert your Name.");
 		header('Location: /profile');
 		exit;
 	}
 
 	if (!isset($_POST['desemail']) || $_POST['desemail'] === '') {
-		User::setError("Preencha o seu e-mail.");
+		User::setError("Please, insert your E-mail.");
 		header('Location: /profile');
 		exit;
 	}
@@ -375,7 +464,7 @@ $app->post("/profile", function(){
 
 		if (User::checkLoginExist($_POST['desemail']) === true) {
 
-			User::setError("Este endereço de e-mail já está cadastrado.");
+			User::setError("This E-mail Address is already registered.");
 			header('Location: /profile');
 			exit;
 
@@ -390,144 +479,104 @@ $app->post("/profile", function(){
 
 	$user->setData($_POST);
 
-	$user->update(false);
+	$user->update();
 
 	$_SESSION[User::SESSION] = $user->getValues();
 
-	User::setSuccess("Dados alterados com sucesso!");
+	User::setSuccess("Successfully changed information!");
 
 	header('Location: /profile');
 	exit;
 
 });
 
-/*$app->get("/checkout", function() {
+$app->get("/order/:idorder", function($idorder){
 
-	User::verifyLogin();
-
-	$address = new Address();
-
-	$cart = Cart::getFromSession();
-
-	if (!isset($_GET['zipcode'])) {
-
-		$_GET['zipcode'] = $cart->getdeszipcode();
-
-	}
-
-	if (isset($_GET['zipcode'])) {
-
-		$address->loadFromCEP($_GET['zipcode']);
-
-		$cart->setdeszipcode($_GET['zipcode']);
-
-		$cart->save();
-
-		$cart->getCalculateTotal();
-
-	}
-
-	if (!$address->getdesaddress()) $address->setdesaddress('');
-	if (!$address->getdescomplement()) $address->setdescomplement('');
-	if (!$address->getdesdistrict()) $address->setdesdistrict('');
-	if (!$address->getdescity()) $address->setdescity('');
-	if (!$address->getdesstate()) $address->setdesstate('');
-	if (!$address->getdescountry()) $address->setdescountry('');
-	if (!$address->getdeszipcode()) $address->setdeszipcode('');
-
-	$page = new Page();
-
-	$page->setTpl("checkout", [
-		'cart'=>$cart->getValues(),
-		'address'=>$address->getValues(),
-		'products'=>$cart->getProducts(),
-		'error'=>Address::getMsgError()
-	]);
-
-});*/
-
-
-/*$app->post("/checkout", function(){
-
-	User::verifyLogin();
-
-	if (!isset($_POST['zipcode']) || $_POST['zipcode'] === '') {
-		Address::setMsgError("Informe o CEP.");
-		header('Location: /checkout');
-		exit;
-	}
-
-	if (!isset($_POST['desaddress']) || $_POST['desaddress'] === '') {
-		Address::setMsgError("Informe o endereço.");
-		header('Location: /checkout');
-		exit;
-	}
-
-	if (!isset($_POST['desdistrict']) || $_POST['desdistrict'] === '') {
-		Address::setMsgError("Informe o bairro.");
-		header('Location: /checkout');
-		exit;
-	}
-
-	if (!isset($_POST['descity']) || $_POST['descity'] === '') {
-		Address::setMsgError("Informe a cidade.");
-		header('Location: /checkout');
-		exit;
-	}
-
-	if (!isset($_POST['desstate']) || $_POST['desstate'] === '') {
-		Address::setMsgError("Informe o estado.");
-		header('Location: /checkout');
-		exit;
-	}
-
-	if (!isset($_POST['descountry']) || $_POST['descountry'] === '') {
-		Address::setMsgError("Informe o país.");
-		header('Location: /checkout');
-		exit;
-	}
-
-	$user = User::getFromSession();
-
-	$address = new Address();
-
-	$_POST['deszipcode'] = $_POST['zipcode'];
-	$_POST['idperson'] = $user->getidperson();
-
-	$address->setData($_POST);
-
-	$address->save();
-
-	$cart = Cart::getFromSession();
-
-	$totals = $cart->getCalculateTotal();
+	User::verifyLogin(false);
 
 	$order = new Order();
 
-	$order->setData([
-		'idcart'=>$cart->getidcart(),
-		'idaddress'=>$address->getidaddress(),
-		'iduser'=>$user->getiduser(),
-		'idstatus'=>OrderStatus::EM_ABERTO,
-		'vltotal'=>$cart->getvltotal()
+	$order->get((int)$idorder);
+
+	$page = new Page();
+
+	$page->setTpl("payment", [
+		'order'=>$order->getValues()
 	]);
 
-	$order->save();
+});
 
-	header("Location: /order/".$order->getidorder());
+/*$app->get("/payment/:idorder", function($idorder) {
+	
+	User::verifyLogin(false);
 
-	switch ((int)$_POST['payment-method']) {
-		case 1:
-		header("Location: /order/".$order->getidorder()."/pagseguro");
-		break;
-		case 2:
-		header("Location: /order/".$order->getidorder()."/paypal");
-		break;
-	}
+	$order = new Order();
 
-	exit;
+	$order->get((int)$idorder);
+
+	// DADOS DO BOLETO PARA O SEU CLIENTE
+	$days_of_deadline_for_payment = 10;
+	$paymentslip_fee = 5.00;
+	$due_date = date("d/m/Y", time() + ($days_of_deadline_for_payment * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
+
+	$amount_charged = formatPrice($order->getvltotal()); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+	$amount_charged = str_replace(".", "", $amount_charged);
+	$amount_charged = str_replace(",", ".",$amount_charged);
+	$amount_paymentslip=number_format($amount_charged+$paymentslip_fee, 2, ',', '');
+
+	$data_paymentslip["number"] = $order->getidorder();  // Nosso numero - REGRA: Máximo de 8 caracteres!
+	$data_paymentslip["document_number"] = $order->getidorder();	// Num do pedido ou nosso numero
+	$data_paymentslip["due_date"] = $due_date; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
+	$data_paymentslip["document_date"] = date("d/m/Y"); // Data de emissão do Boleto
+	$data_paymentslip["processing_date"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
+	$data_paymentslip["amount_paymentslip"] = $amount_paymentslip; 	// Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
+
+	// DADOS DO SEU CLIENTE
+	$data_paymentslip["withdrawn"] = $order->getdesperson();
+	$data_paymentslip["address1"] = $order->getdesaddress() . " " . $order->getdesdistrict();
+	$data_paymentslip["address2"] = $order->getdescity() . " - " . $order->getdesstate() . " - " . $order->getdescountry() . " -  CEP: " . $order->getdeszipcode();
+
+	// INFORMACOES PARA O CLIENTE
+	$data_paymentslip["demonstrative1"] = "Pagamento de Compra na Loja Edu Store E-commerce";
+	$data_paymentslip["demonstrative2"] = "Taxa bancária - R$ 0,00";
+	$data_paymentslip["demonstrative3"] = "";
+	$data_paymentslip["info1"] = "- Sr. Caixa, cobrar multa de 2% após o vencimento";
+	$data_paymentslip["info2"] = "- Receber até 10 dias após o vencimento";
+	$data_paymentslip["info3"] = "- Em caso de dúvidas entre em contato conosco: suporte@edustore.com.br";
+	$data_paymentslip["info4"] = "&nbsp; Emitido pelo sistema Loja Edu Store E-commerce - www.edustore.com.br";
+
+	// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
+	$data_paymentslip["quantidade"] = "";
+	$data_paymentslip["valor_unitario"] = "";
+	$data_paymentslip["aceite"] = "";		
+	$data_paymentslip["especie"] = "R$";
+	$data_paymentslip["especie_doc"] = "";
+
+
+	// ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
+
+
+	// DADOS DA SUA CONTA - ITAÚ
+	$data_paymentslip["agencia"] = "1690"; // Num da agencia, sem digito
+	$data_paymentslip["conta"] = "48781";	// Num da conta, sem digito
+	$data_paymentslip["conta_dv"] = "2"; 	// Digito do Num da conta
+
+	// DADOS PERSONALIZADOS - ITAÚ
+	$data_paymentslip["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
+
+	// SEUS DADOS
+	$data_paymentslip["identificacao"] = "Edu Store";
+	$data_paymentslip["cpf_cnpj"] = "24.700.731/0001-08";
+	$data_paymentslip["endereco"] = "Rua Ademar Saraiva Leão, 234 - Alvarenga, 09853-120";
+	$data_paymentslip["cidade_uf"] = "São Bernardo do Campo - SP";
+	$data_paymentslip["cedente"] = "Edu Store LTDA - ME";
+
+	// NÃO ALTERAR!
+	$path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "resources" . DIRECTORY_SEPARATOR . "payment slipphp" . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR;
+
+	require_once($path . "func_itau.php");
+	require_once($path . "layout_itau.php");
 
 });*/
-
 
 ?>
