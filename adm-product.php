@@ -4,59 +4,51 @@ use \BangemannGuilherme\PageAdmin;
 use \BangemannGuilherme\Model\User;
 use \BangemannGuilherme\Model\Product;
 
-/*$app->get("/admin/products", function(){
+$app->get("/admin/products", function(){
 
 	User::verifyLogin();
 
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
-	$boxx = (isset($_GET['boxx'])) ? $_GET['boxx'] : "";
-
-	//$_GET['boxx'];
-
-	//var_dump($boxx);
-	//exit;
 
 	if ($search != '') {
 
-		$pagination = Product::getPageSearchBox($boxx, $search, $page, 10);
+		$pagination = Product::getPageSearch($search, $page);
 
 	} else {
 
-		$pagination = Product::getPage($page, 10);
+		$pagination = Product::getPage($page);
 
 	}
 
 	$pages = [];
 
-	for ($x = 0; $x < $pagination['pages']; $x++) {
+	for ($x = 0; $x < $pagination['pages']; $x++)
+	{
 
 		array_push($pages, [
 			'href'=>'/admin/products?'.http_build_query([
 				'page'=>$x+1,
-				'search'=>$search,
-				'boxx'=>$boxx
+				'search'=>$search
 			]),
-			'text'=>$x+1,
+			'text'=>$x+1
 		]);
+
 	}
 
-	//var_dump($pagination['data']);
-	//exit;
+	$products = Product::listAll();
 
 	$page = new PageAdmin();
 
 	$page->setTpl("products", [
 		"products"=>$pagination['data'],
 		"search"=>$search,
-		"pages"=>$pages,
-		"boxx"=>$boxx
+		"pages"=>$pages
 	]);
 
+});
 
-});*/
-
-$app->get('/admin/products', function ()
+/*$app->get('/admin/products', function ()
 {
 	User::verifyLogin();
 
@@ -68,7 +60,7 @@ $app->get('/admin/products', function ()
 		'products'=>$products
 	]);
 
-});
+});*/
 
 $app->get('/admin/products/create', function ()
 {

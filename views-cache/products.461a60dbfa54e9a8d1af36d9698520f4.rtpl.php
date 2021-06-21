@@ -20,6 +20,18 @@
             
             <div class="box-header">
               <a href="/admin/products/create" class="btn btn-success">Register</a>
+              <form
+              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <div class="input-group">
+                  <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                      <button class="btn btn-primary" type="submit">
+                          <i class="fas fa-search fa-sm"></i>
+                      </button>
+                  </div>
+              </div>
+            </form>
             </div>
 
             <div class="box-body no-padding">
@@ -50,6 +62,15 @@
               </table>
             </div>
             <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+
+                <li><a href="<?php echo htmlspecialchars( $value1["href"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["text"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
+                <?php } ?>
+
+              </ul>
+            </div>
           </div>
   	</div>
   </div>
