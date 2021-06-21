@@ -1,4 +1,5 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Footer -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?></div>
+<!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">

@@ -170,6 +170,46 @@ public function getProductsPage($page = 1, $itemsPerPage = 8)
 		]);
 	}
 
+	/*	public static function getGraph()
+		{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT SQL_CALC_FOUND_ROWS extract(DAY FROM dtregister) AS dia, SUM(vltotal) AS total 
+							FROM tb_orders GROUP BY dia");
+
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+
+		return [
+            'data'=>$results,
+            'nrtotal'=>(int)$resultTotal[0]["nrtotal"]
+			];
+		}*/
+
+	public static function getCategoryProducts() {
+
+		$db = new Sql();
+
+		$results = $db->select("SELECT SQL_CALC_FOUND_ROWS
+		COUNT(pc.idcategory) AS quantity, c.descategory AS genre
+		FROM tb_products p, tb_categories c, tb_productscategories pc
+		WHERE p.idproduct=pc.idproduct AND c.idcategory=pc.idcategory
+		GROUP BY descategory
+		ORDER BY quantity");
+
+		$resultTotal = $db->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+
+		return [
+            'data'=>$results,
+            'nrtotal'=>(int)$resultTotal[0]["nrtotal"]
+			];
+	}
 }
+
+
+
+
 
  ?>

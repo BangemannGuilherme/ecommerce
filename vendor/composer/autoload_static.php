@@ -12,6 +12,7 @@ class ComposerStaticInite32dd2a9ca44dd6f41a12b0e55740797
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
     );
@@ -29,10 +30,19 @@ class ComposerStaticInite32dd2a9ca44dd6f41a12b0e55740797
             'Symfony\\Component\\String\\' => 25,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Console\\' => 26,
+            'Svg\\' => 4,
         ),
         'P' => 
         array (
             'Psr\\Container\\' => 14,
+        ),
+        'F' => 
+        array (
+            'FontLib\\' => 8,
+        ),
+        'D' => 
+        array (
+            'Dompdf\\' => 7,
         ),
         'B' => 
         array (
@@ -81,9 +91,21 @@ class ComposerStaticInite32dd2a9ca44dd6f41a12b0e55740797
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Svg\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
+        ),
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'FontLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
+        ),
+        'Dompdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
         ),
         'BangemannGuilherme\\' => 
         array (
@@ -97,6 +119,10 @@ class ComposerStaticInite32dd2a9ca44dd6f41a12b0e55740797
             'Slim' => 
             array (
                 0 => __DIR__ . '/..' . '/slim/slim',
+            ),
+            'Sabberworm\\CSS' => 
+            array (
+                0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib',
             ),
         ),
         'R' => 
@@ -115,9 +141,15 @@ class ComposerStaticInite32dd2a9ca44dd6f41a12b0e55740797
         'Comparator\\StructureComparator' => __DIR__ . '/..' . '/lulco/phoenix/src/Comparator/StructureComparator.php',
         'Comparator\\TableComparator' => __DIR__ . '/..' . '/lulco/phoenix/src/Comparator/TableComparator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'Dumper\\Dumper' => __DIR__ . '/..' . '/lulco/phoenix/src/Dumper/Dumper.php',
         'Dumper\\Indenter' => __DIR__ . '/..' . '/lulco/phoenix/src/Dumper/Indenter.php',
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
+        'HTML5_Data' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Data.php',
+        'HTML5_InputStream' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/InputStream.php',
+        'HTML5_Parser' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Parser.php',
+        'HTML5_Tokenizer' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Tokenizer.php',
+        'HTML5_TreeBuilder' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/TreeBuilder.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',

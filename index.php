@@ -24,9 +24,9 @@ require_once("adm-product.php");
 
 require_once("functions.php");
 
-//require_once("adm-reports.php");
+require_once("adm-reports.php");
 
-//require_once("adm-orders.php");
+require_once("adm-orders.php");
 
 
 /*

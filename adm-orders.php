@@ -1,6 +1,6 @@
 <?php
 
-/*use \BangemannGuilherme\PageAdmin;
+use \BangemannGuilherme\PageAdmin;
 use \BangemannGuilherme\Model\User;
 use \BangemannGuilherme\Model\Order;
 use \BangemannGuilherme\Model\OrderStatus;

@@ -41,8 +41,12 @@
                             <?php } ?>
 
                             <br>
+                            <br>
 
-                            <br>           
+                            <div class="cart-collaterals">
+                                <h2>My Profile</h2>
+                            </div>
+         
                             <form method="post" action="/profile">
                                 <div class="form-group">
                                 <label for="desperson"><b>Full name</b></label><br>

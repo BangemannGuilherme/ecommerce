@@ -25,6 +25,23 @@
                             <a href="/admin/products" title="Products" style="color:rgb(255, 255, 255);">Products</a>
                         </div>
                     </div>
+                    <div class="h4 card bg-primary text-white shadow">
+                        <div class="card-body">
+                            <!--<a style="color:rgb(255, 255, 255);">→ </a>-->
+                            <a href="/admin/reports" title="Products" style="color:rgb(255, 255, 255);">Reports</a>
+                        </div>
+                    </div>
+                    <div class="h4 card bg-primary text-white shadow">
+                        <div class="card-body">
+                            <!--<a style="color:rgb(255, 255, 255);">→ </a>-->
+                            <a href="/admin/graphs" title="Products" style="color:rgb(255, 255, 255);">Graphs</a>
+                        </div>
+                    </div>
+                    
+
+                    
+
+
                     <!--<div class="h4 card bg-primary text-white shadow">
                         <div class="card-body">-->
                             <!--<a style="color:rgb(255, 255, 255);">→ </a>-->

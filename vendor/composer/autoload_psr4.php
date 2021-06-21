@@ -16,6 +16,9 @@ return array(
     'Symfony\\Component\\String\\' => array($vendorDir . '/symfony/string'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
+    'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src/Svg'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
+    'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
+    'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
     'BangemannGuilherme\\' => array($vendorDir . '/bangemannguilherme/php-classes/src'),
 );

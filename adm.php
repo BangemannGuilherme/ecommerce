@@ -1,19 +1,20 @@
 <?php
 
+
 use \BangemannGuilherme\PageAdmin;
 use \BangemannGuilherme\Model\User;
+use \BangemannGuilherme\Model\Category;
 use \BangemannGuilherme\Model\Order;
 
-
-/*$app->get('/admin/', function() {
+$app->get('/admin/graphs', function() {
     
 	User::verifyLogin();
 
 	$page = new PageAdmin();
 
-	$order = Order::GetGraph();
+	$categoryproduct = Category::getCategoryProducts();
 
-	//var_dump($order);
+	//var_dump($categoryproduct);
 	//exit;
 
 	//$pg = [];
@@ -26,14 +27,12 @@ use \BangemannGuilherme\Model\Order;
 
 	
 
-	$page->setTpl("index", [
-		'order'=>$order['data']
+	$page->setTpl("graph", [
+		'category'=>$categoryproduct['data']
 		//'tot'=>$tot
 	]);
 
-
-
-});*/
+});
 
 $app->get('/admin', function() {
 

@@ -1,0 +1,120 @@
+<script>
+            function getDadosEnderecoPorCEP(cep) {
+                let url = 'https://viacep.com.br/ws/'+cep+'/json/unicode/'
+
+                let xmlHttp = new XMLHttpRequest()
+                xmlHttp.open('GET', url)
+
+                xmlHttp.onreadystatechange = () => {
+                    if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        let dadosJSONText = xmlHttp.responseText
+                        let dadosJSONObj = JSON.parse(dadosJSONText)
+
+                        document.getElementById('billing_address_1').value = dadosJSONObj.logradouro
+                        document.getElementById('billing_address_2').value = dadosJSONObj.complemento
+                        document.getElementById('billing_district').value = dadosJSONObj.bairro
+                        document.getElementById('billing_city').value = dadosJSONObj.localidade
+                        document.getElementById('billing_state').value = dadosJSONObj.uf
+
+                        
+                    }
+                }
+
+                xmlHttp.send()
+            }
+ </script>
+
+</div> <!-- .container -->
+</div> <!-- .site-header -->
+
+<br>
+<br>
+
+<div class="product-big-title-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="product-bit-title text-center">
+					<h2>Pagamento</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="single-product-area">
+	<div class="zigzag-bottom"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="product-content-right">
+					<form action="/checkout" class="checkout" method="post" name="checkout">
+						<div id="customer_details" class="col2-set">
+							<div class="row">
+								<div class="col-md-12">
+
+									<div class="woocommerce-billing-fields">
+
+										</p>
+										<div class="clear"></div>
+										<h3 id="order_review_heading" style="margin-top:30px;">Order Detail</h3>
+										<div id="order_review" style="position: relative;">
+											<table class="shop_table">
+												<thead>
+													<tr>
+														<th class="product-name">Product</th>
+														<th class="product-total">&emsp;&emsp;&emsp;&emsp;&emsp;Total</th>
+													</tr>
+												</thead>
+												<tbody>
+                                                    {loop="$products"}
+													<tr class="cart_item">
+														<td class="product-name">
+															{$value.desproduct} <strong class="product-quantity">× {$value.nrqtd}</strong> 
+														</td>
+														<td class="product-total">
+															<span class="amount">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;${function="formatPrice($value.vltotal)"}</span>
+														</td>
+                                                    </tr>
+                                                    {/loop}
+												</tbody>
+												<tfoot>
+													<tr class="cart-subtotal">
+														<th>Subtotal</th>
+														<td><span class="amount">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;${function="formatPrice($cart.vlsubtotal)"}</span>
+														</td>
+													</tr>
+													<tr class="shipping">
+														<th>Shipping</th>
+														<td>
+															&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$0,00
+															<input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
+														</td>
+													</tr>
+													<tr class="order-total">
+														<th>&emsp;Total Order</th>
+														<td><strong><span class="amount">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;${function="formatPrice($cart.vltotal)"}</span></strong> </td>
+													</tr>
+												</tfoot>
+											</table>
+											<br>
+											<br>
+											<div id="payment">
+												<div class="form-row place-order">
+													<input type="submit" data-value="Place order" value="Continuar" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+												</div>
+												<div class="clear"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br>
+<br>
