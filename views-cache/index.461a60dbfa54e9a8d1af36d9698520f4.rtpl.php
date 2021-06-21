@@ -28,6 +28,12 @@
                     <div class="h4 card bg-primary text-white shadow">
                         <div class="card-body">
                             <!--<a style="color:rgb(255, 255, 255);">→ </a>-->
+                            <a href="/admin/orders" title="Products" style="color:rgb(255, 255, 255);">Orders</a>
+                        </div>
+                    </div>
+                    <div class="h4 card bg-primary text-white shadow">
+                        <div class="card-body">
+                            <!--<a style="color:rgb(255, 255, 255);">→ </a>-->
                             <a href="/admin/reports" title="Products" style="color:rgb(255, 255, 255);">Reports</a>
                         </div>
                     </div>
@@ -377,5 +383,3 @@
 </div>
 <!-- /.container-fluid -->
 
-</div>
-<!-- End of Main Content -->

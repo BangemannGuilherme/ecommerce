@@ -93,6 +93,27 @@
                     <span>Products</span></a>
             </li>
 
+            <!-- Nav Item - Products -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/orders"> 
+                    <i class="fas fa-folder-open"></i>
+                    <span>Orders</span></a>
+            </li>
+
+            <!-- Nav Item - Products -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/reports"> 
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reports</span></a>
+            </li>
+
+            <!-- Nav Item - Products -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/graphs"> 
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Graphs</span></a>
+            </li>
+
             <!-- Nav Item - Pages Collapse Menu -->
             <!--<li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

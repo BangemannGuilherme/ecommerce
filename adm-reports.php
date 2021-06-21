@@ -4,6 +4,7 @@ use \BangemannGuilherme\PageAdmin;
 use \BangemannGuilherme\Model\User;
 use \BangemannGuilherme\Model\Product;
 use \BangemannGuilherme\DB\Sql;
+use \BangemannGuilherme\Model\Report;
 use \Dompdf\Dompdf;
 
 
@@ -22,7 +23,7 @@ $app->get("/admin/reports/games", function() {
 
 	User::verifyLogin();
 
-	$allgames = Product::reportGames();
+	$allgames = Report::reportGames();
 
 	//var_dump($product);
 	//die;
@@ -50,7 +51,7 @@ $app->get("/admin/reports/games", function() {
 	Relatório de Produtos
 	</h1>
 	<table>
-  	<tr style='background-color: gray'>
+  	<tr style='background-color: #45b77d'>
     <th>ID</th>
     <th>Name</th>
     <th>Preço(R$)</th>
@@ -70,14 +71,7 @@ $app->get("/admin/reports/games", function() {
  ';
 }
 
-
-
-
-
 	$html .= '</table>';
-
-
-
 
 	$pdf->loadHtml($html);
 
@@ -92,15 +86,13 @@ $app->get("/admin/reports/games", function() {
 
 	));
 
-
-
 });
 
 $app->get("/admin/reports/categories", function() {
 
 	User::verifyLogin();
 
-	$allgames = Product::reportCategories();
+	$allgames = Report::reportCategories();
 
 	//var_dump($product);
 	//die;
@@ -128,7 +120,7 @@ $app->get("/admin/reports/categories", function() {
 	Relatório de Produtos
 	</h1>
 	<table>
-  	<tr style='background-color: green'>
+  	<tr style='background-color: #45b77d'>
     <th>ID</th>
     <th>Name</th>
     <th>Data(R$)</th>
@@ -146,17 +138,9 @@ $app->get("/admin/reports/categories", function() {
  ';
 }
 
-
-
-
-
 	$html .= '</table>';
 
-
-
-
 	$pdf->loadHtml($html);
-
 
 	//RENDERIZAR O HTML
 	$pdf->render();
@@ -172,11 +156,11 @@ $app->get("/admin/reports/categories", function() {
 
 });
 
-/*$app->get("/admin/reports/games", function() {
+$app->get("/admin/reports/orders", function() {
 
 	User::verifyLogin();
 
-	$allgames = Product::reportGames();
+	$allgames = Report::reportOrders();
 
 	//var_dump($product);
 	//die;
@@ -204,11 +188,13 @@ $app->get("/admin/reports/categories", function() {
 	Relatório de Produtos
 	</h1>
 	<table>
-  	<tr style='background-color: gray'>
+  	<tr style='background-color: #45b77d'>
     <th>ID</th>
     <th>Name</th>
-    <th>Preço(R$)</th>
-    <th>Data Registro</th>
+    <th>DaBBta(R$)</th>
+	<th>AA(R$)</th>
+	<th>Valor Total($)</th>
+	<th>Data</th>
   </tr>
 	";
 
@@ -216,31 +202,25 @@ $app->get("/admin/reports/categories", function() {
 
 	 $html .= '
   	<tr>
-   		<td>'.$games["idproduct"].'</td>
-   		<td>'.$games["desproduct"].'</td>
-   		<td>'.$games["vlprice"].'</td>
+   		<td>'.$games["idorder"].'</td>
+   		<td>'.$games["desperson"].'</td>
+		<td>'.$games["desemail"].'</td>
+		<td>'.$games["desstatus"].'</td>
+		<td>'.$games["vltotal"].'</td>
    		<td>'.$games["dtregister"].'</td>
   	</tr>
  ';
 }
 
-
-
-
-
 	$html .= '</table>';
 
-
-
-
 	$pdf->loadHtml($html);
-
 
 	//RENDERIZAR O HTML
 	$pdf->render();
 
 	//gerar a saida do pdf
-	$pdf->stream("relatorio.pdf",
+	$pdf->stream("report.pdf",
 	 array(
 	 	"Attachment"=>false
 
@@ -250,11 +230,11 @@ $app->get("/admin/reports/categories", function() {
 
 });
 
-$app->get("/admin/reports/games", function() {
+$app->get("/admin/reports/genresxproducts", function() {
 
 	User::verifyLogin();
 
-	$allgames = Product::reportGames();
+	$allgames = Report::reportGenresxProd();
 
 	//var_dump($product);
 	//die;
@@ -282,11 +262,9 @@ $app->get("/admin/reports/games", function() {
 	Relatório de Produtos
 	</h1>
 	<table>
-  	<tr style='background-color: gray'>
+  	<tr style='background-color: #45b77d'>
     <th>ID</th>
     <th>Name</th>
-    <th>Preço(R$)</th>
-    <th>Data Registro</th>
   </tr>
 	";
 
@@ -294,31 +272,21 @@ $app->get("/admin/reports/games", function() {
 
 	 $html .= '
   	<tr>
-   		<td>'.$games["idproduct"].'</td>
+   		<td>'.$games["descategory"].'</td>
    		<td>'.$games["desproduct"].'</td>
-   		<td>'.$games["vlprice"].'</td>
-   		<td>'.$games["dtregister"].'</td>
   	</tr>
  ';
 }
 
-
-
-
-
 	$html .= '</table>';
 
-
-
-
 	$pdf->loadHtml($html);
-
 
 	//RENDERIZAR O HTML
 	$pdf->render();
 
 	//gerar a saida do pdf
-	$pdf->stream("relatorio.pdf",
+	$pdf->stream("report.pdf",
 	 array(
 	 	"Attachment"=>false
 
@@ -328,11 +296,11 @@ $app->get("/admin/reports/games", function() {
 
 });
 
-$app->get("/admin/reports/games", function() {
+$app->get("/admin/reports/persons", function() {
 
 	User::verifyLogin();
 
-	$allgames = Product::reportGames();
+	$allgames = Report::reportPersons();
 
 	//var_dump($product);
 	//die;
@@ -360,11 +328,13 @@ $app->get("/admin/reports/games", function() {
 	Relatório de Produtos
 	</h1>
 	<table>
-  	<tr style='background-color: gray'>
+  	<tr style='background-color: #45b77d'>
     <th>ID</th>
     <th>Name</th>
-    <th>Preço(R$)</th>
-    <th>Data Registro</th>
+    <th>NamFWASe</th>
+	<th>NaDDme</th>
+	<th>A</th>
+	<th>NaCme</th>
   </tr>
 	";
 
@@ -372,39 +342,31 @@ $app->get("/admin/reports/games", function() {
 
 	 $html .= '
   	<tr>
-   		<td>'.$games["idproduct"].'</td>
-   		<td>'.$games["desproduct"].'</td>
-   		<td>'.$games["vlprice"].'</td>
-   		<td>'.$games["dtregister"].'</td>
+   		<td>'.$games["desperson"].'</td>
+   		<td>'.$games["desemail"].'</td>
+   		<td>'.$games["nrphone"].'</td>
+		<td>'.$games["deslogin"].'</td>
+		<td>'.$games["inadmin"].'</td>
+		<td>'.$games["dtregister"].'</td>
   	</tr>
  ';
 }
 
-
-
-
-
 	$html .= '</table>';
 
-
-
-
 	$pdf->loadHtml($html);
-
 
 	//RENDERIZAR O HTML
 	$pdf->render();
 
 	//gerar a saida do pdf
-	$pdf->stream("relatorio.pdf",
+	$pdf->stream("report.pdf",
 	 array(
 	 	"Attachment"=>false
 
 	));
 
-
-
-});*/
+});
 
 
 ?>

@@ -13,15 +13,15 @@
     var x = [];
 
 </script>
- <?php $counter1=-1;  if( isset($category) && ( is_array($category) || $category instanceof Traversable ) && sizeof($category) ) foreach( $category as $key1 => $value1 ){ $counter1++; ?>
+<?php $counter1=-1;  if( isset($category) && ( is_array($category) || $category instanceof Traversable ) && sizeof($category) ) foreach( $category as $key1 => $value1 ){ $counter1++; ?>
   <script type="text/javascript"> 
     
   
     x.push(['<?php echo htmlspecialchars( $value1["genre"], ENT_COMPAT, 'UTF-8', FALSE ); ?>', '<?php echo htmlspecialchars( $value1["quantity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>']);
 
 
-  </script>
-  <?php } ?>
+</script>
+<?php } ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 google.charts.load('current', {'packages':['bar']});
@@ -63,12 +63,9 @@ bar: { groupWidth: "90%" }
 
 <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
 
-
-
-
 <!------------------------------------------------------------>
-<!-- /.content -->
 
+<!-- /.content -->
 
 
 <!-- /.content-wrapper -->

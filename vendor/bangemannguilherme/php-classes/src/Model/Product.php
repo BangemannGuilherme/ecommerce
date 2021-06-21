@@ -265,21 +265,7 @@ class Product extends Model {
 
     }
 
-    public static function reportGames()
-	{
-		$db = new Sql();
 
-		return $db->select("SELECT * FROM tb_products ORDER BY desproduct");
-
-	}
-
-    public static function reportCategories()
-	{
-		$db = new Sql();
-
-		return $db->select("SELECT * FROM tb_categories ORDER BY idcategory");
-
-	}
 
     
 

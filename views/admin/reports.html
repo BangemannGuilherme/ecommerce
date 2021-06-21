@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-      &nbsp;&nbsp;Genre List
+      &nbsp;&nbsp;Report List
       </h1>
     </section>
 
@@ -14,7 +14,7 @@
     <div class="col-md-6">
         <div class="box box-primary">
             <div class="box-header with-border">
-            <h3 class="box-title">All Products</h3>
+
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -23,7 +23,7 @@
                     <thead>
                         <tr>
                         <th style="width: 10px">#</th>
-                        <th>Product Name</th>
+                        <th>Report Name</th>
                         <th style="width: 240px">&nbsp;</th>
                         </tr>
                     </thead>
@@ -39,6 +39,24 @@
                         </td>
                         <td>Genres</td>
                     </tbody>
+                    <tbody>
+                        <td>
+                            <a href="/admin/reports/orders" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Report</a>
+                        </td>
+                        <td>Orders</td>
+                    </tbody>
+                    <tbody>
+                        <td>
+                            <a href="/admin/reports/genresxproducts" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Report</a>
+                        </td>
+                        <td>Genres x Products</td>
+                    </tbody>
+                    <tbody>
+                        <td>
+                            <a href="/admin/reports/persons" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Report</a>
+                        </td>
+                        <td>Persons</td>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -47,6 +65,6 @@
 </section>
 <!-- /.content -->
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 
 <!-- /.content-wrapper -->
