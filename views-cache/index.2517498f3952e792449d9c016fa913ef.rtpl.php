@@ -23,7 +23,7 @@
 					</li>
 					<?php } ?>
 
-					<!-- <li data-bg-image="/resources/site/dummy/slide-2.jpg">
+					<li data-bg-image="/resources/site/dummy/slide-2.jpg">
 						<div class="container">
 							<div class="slide-content">
 								<h2 class="slide-title">R6</h2>
@@ -36,18 +36,19 @@
 
 							<img src="/resources/site/dummy/game-cover-2.jpg" class="slide-image">
 						</div>
-					</li>-->
-				</ul> <!-- .slides -->
+					</li>
+				</ul> 
 			</div>
-			<!-- .home-slider -->
+			.home-slider -->
 
 			<main class="main-content">
 				<div class="container">
-					<div class="page">
+
+						
 						<section>
 							<header>
-								<h2 class="section-title">Products</h2>
-								<a href="/products" class="all">Show All</a>
+								<h2 class="section-title">All Games</h2>
+								<!--<a href="/products" class="all">Show All</a>-->
 							</header>
 
 							<div class="product-list">
@@ -68,6 +69,9 @@
 								<?php } ?>
 
 							</div> <!-- .product-list -->
+						</div>
+					</div> <!-- .container -->
+				</main> <!-- .main-content -->
 
 						</section>
 					</div>

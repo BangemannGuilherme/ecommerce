@@ -61,7 +61,7 @@
                     <div class="product">
                         <div class="inner-product">
                             <div class="figure-image">
-                                <a href="{$value.desproduct}"><img src="{$value.desphoto}"></a>
+                                <a href="{$value.desproduct}"><img src="" alt=""></a>
                             </div>
                             <h3 class="product-title"><a href="/products/{$value.desurl}">{$value.desproduct}</a></h3>
                             <small class="price">${$value.vlprice}</small>
@@ -96,18 +96,6 @@
             
         </div>
         
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-pagination text-center">
-                    <nav>
-                        <ul class="pagination">
-                        {loop="$pages"}
-                        <li><a href="{$value.href}">{$value.text}</a></li>
-                        {/loop}
-                        </ul>
-                    </nav>                        
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>

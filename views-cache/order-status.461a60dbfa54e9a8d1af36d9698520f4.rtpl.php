@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Editar Status do Pedido</h3>
+                <h3 class="box-title">Edit Order Status</h3>
             </div>
             <!-- /.box-header -->
             <?php if( $msgError != '' ){ ?>
@@ -38,7 +38,7 @@
             <form role="form" action="/admin/orders/<?php echo htmlspecialchars( $order["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/status" method="post">
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="desproduct">Status do Pedido</label>
+                        <label for="desproduct">Order Status</label>
                         <select class="form-control" name="idstatus">
                             <?php $counter1=-1;  if( isset($status) && ( is_array($status) || $status instanceof Traversable ) && sizeof($status) ) foreach( $status as $key1 => $value1 ){ $counter1++; ?>
                             <option <?php if( $value1["idstatus"] === $order["idstatus"] ){ ?>selected="selected"<?php } ?> value="<?php echo htmlspecialchars( $value1["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
@@ -48,7 +48,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
             </div>

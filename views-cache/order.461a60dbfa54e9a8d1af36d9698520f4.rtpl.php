@@ -26,32 +26,32 @@
         <!-- info row -->
         <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
-            De
+            From
             <address>
                 <strong>GUIBOY ECOMMERCE</strong><br>
                 Rua Céu Azul, 666 - Centro<br>
                 Estrela - RS<br>
-                Telefone: (51) 9 9999-6666<br>
+                Phone Number: (51) 9 9999-6666<br>
                 E-mail: guiboy@ecommerce.com.br
             </address>
             </div>
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-            Para
+            To
             <address>
                 <strong><?php echo htmlspecialchars( $order["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong><br>
                 <?php echo htmlspecialchars( $order["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $order["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
                 <?php echo htmlspecialchars( $order["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
-                <?php if( $order["nrphone"] && $order["nrphone"]!='0' ){ ?>Telefone: <?php echo htmlspecialchars( $order["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br><?php } ?>
+                <?php if( $order["nrphone"] && $order["nrphone"]!='0' ){ ?>Phone Number: <?php echo htmlspecialchars( $order["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br><?php } ?>
                 E-mail: <?php echo htmlspecialchars( $order["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
             </address>
             </div>
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-            <b>Pedido #<?php echo htmlspecialchars( $order["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+            <b>Order #<?php echo htmlspecialchars( $order["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
             <br>
-            <b>Emitido em:</b> <?php echo formatDate($order["dtregister"]); ?><br>
-            <b>Pago em:</b> <?php echo formatDate($order["dtregister"]); ?>
+            <b>Issued on:</b> <?php echo formatDate($order["dtregister"]); ?><br>
+            <b>Paid in:</b> <?php echo formatDate($order["dtregister"]); ?>
             </div>
             <!-- /.col -->
         </div>
@@ -63,9 +63,9 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Qtd</th>
-                    <th>Produto</th>
-                    <th>Código #</th>
+                    <th>Quantity</th>
+                    <th>Product</th>
+                    <th>Code #</th>
                     <th>Subtotal</th>
                 </tr>
                 </thead>
@@ -75,7 +75,7 @@
                     <td><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td>R$<?php echo formatPrice($order["vltotal"]); ?></td>
+                    <td>$<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                 </tr>
                 <?php } ?>
                 </tbody>
@@ -89,16 +89,16 @@
             <!-- accepted payments column -->
             <div class="col-xs-6">
 
-                <p class="lead">Forma de Pagamento</p>
+                <p class="lead">Form of Payment</p>
                 
                 <table class="table">
                     <tbody>
                     <tr>
-                        <th style="width:180px;">Método de Pagamento:</th>
-                        <td>Boleto</td>
+                        <th style="width:180px;">Payment Method:</th>
+                        <td>Payment Slip</td>
                     </tr>
                     <tr>
-                        <th>Parcelas:</th>
+                        <th>Payment:</th>
                         <td>1x</td>
                     </tr>
                     <!--
@@ -113,17 +113,17 @@
             </div>
             <!-- /.col -->
             <div class="col-xs-6">
-            <p class="lead">Resumo do Pedido</p>
+            <p class="lead">Order</p>
     
             <div class="table-responsive">
                 <table class="table">
                 <tbody><tr>
                     <th style="width:50%">Subtotal:</th>
-                    <td>R$<?php echo formatPrice($cart["vlsubtotal"]); ?></td>
+                    <td>$<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                 </tr>
                 <tr>
                     <th>Total:</th>
-                    <td>R$<?php echo formatPrice($cart["vltotal"]); ?></td>
+                    <td>$<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                 </tr>
                 </tbody></table>
             </div>
@@ -136,15 +136,15 @@
         <div class="row no-print">
             <div class="col-xs-12">
                 <button type="button" onclick="window.location.href = '/admin/orders/<?php echo htmlspecialchars( $order["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/status'" class="btn btn-default pull-left" style="margin-left: 5px;">
-                    <i class="fa fa-pencil"></i> Editar Status
+                    <i class="fa fa-pencil"></i> Status Edit
                 </button>
                 <button type="button" onclick="window.open('/boleto/<?php echo htmlspecialchars( $order["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>')" class="btn btn-default pull-left" style="margin-left: 5px;">
-                    <i class="fa fa-barcode"></i> Boleto
+                    <i class="fa fa-barcode"></i> Payment Slip
                 </button>
 
                 
                 <button type="button" onclick="window.print()" class="btn btn-primary pull-right" style="margin-right: 5px;">
-                    <i class="fa fa-print"></i> Imprimir
+                    <i class="fa fa-print"></i> Print
                 </button>
             </div>
         </div>

@@ -25,20 +25,16 @@ $app->get("/admin/reports/games", function() {
 
 	$allgames = Report::reportGames();
 
-	//var_dump($product);
-	//die;
-
 	$db = new Sql();
 
-
-	// INSTACIAR A CLASSE DOM PDF
+	// DOM PDF Class
 	$pdf = new Dompdf();
 
 
 	$html = "
 	<style>
 		table {
-    	font-family: arial, sans-serif;
+    	font-family: Times, serif;
     	border-collapse: collapse;
     	width: 100%;
 	}
@@ -48,14 +44,14 @@ $app->get("/admin/reports/games", function() {
 	}
     </style>
 	<h1>
-	Relatório de Produtos
+	Game Report
 	</h1>
 	<table>
   	<tr style='background-color: #45b77d'>
     <th>ID</th>
     <th>Name</th>
-    <th>Preço(R$)</th>
-    <th>Data Registro</th>
+    <th>Price($)</th>
+    <th>Registered Date</th>
   </tr>
 	";
 
@@ -76,10 +72,10 @@ $app->get("/admin/reports/games", function() {
 	$pdf->loadHtml($html);
 
 
-	//RENDERIZAR O HTML
+	//html render
 	$pdf->render();
 
-	//gerar a saida do pdf
+	//pdf generate
 	$pdf->stream("report.pdf",
 	 array(
 	 	"Attachment"=>false
@@ -94,20 +90,16 @@ $app->get("/admin/reports/categories", function() {
 
 	$allgames = Report::reportCategories();
 
-	//var_dump($product);
-	//die;
-
 	$db = new Sql();
 
-
-	// INSTACIAR A CLASSE DOM PDF
+	// DOM PDF Class
 	$pdf = new Dompdf();
 
 
 	$html = "
 	<style>
 		table {
-    	font-family: arial, sans-serif;
+    	font-family: Times, serif;
     	border-collapse: collapse;
     	width: 100%;
 	}
@@ -117,13 +109,13 @@ $app->get("/admin/reports/categories", function() {
 	}
     </style>
 	<h1>
-	Relatório de Produtos
+	Genre Report
 	</h1>
 	<table>
   	<tr style='background-color: #45b77d'>
     <th>ID</th>
     <th>Name</th>
-    <th>Data(R$)</th>
+    <th>Registered Date</th>
   </tr>
 	";
 
@@ -142,17 +134,15 @@ $app->get("/admin/reports/categories", function() {
 
 	$pdf->loadHtml($html);
 
-	//RENDERIZAR O HTML
+	//html render
 	$pdf->render();
 
-	//gerar a saida do pdf
+	//pdf generate
 	$pdf->stream("report.pdf",
 	 array(
 	 	"Attachment"=>false
 
 	));
-
-
 
 });
 
@@ -162,20 +152,16 @@ $app->get("/admin/reports/orders", function() {
 
 	$allgames = Report::reportOrders();
 
-	//var_dump($product);
-	//die;
-
 	$db = new Sql();
 
-
-	// INSTACIAR A CLASSE DOM PDF
+	// DOM PDF Class
 	$pdf = new Dompdf();
 
 
 	$html = "
 	<style>
 		table {
-    	font-family: arial, sans-serif;
+    	font-family: Times, serif;
     	border-collapse: collapse;
     	width: 100%;
 	}
@@ -185,16 +171,16 @@ $app->get("/admin/reports/orders", function() {
 	}
     </style>
 	<h1>
-	Relatório de Produtos
+	Order Report
 	</h1>
 	<table>
   	<tr style='background-color: #45b77d'>
     <th>ID</th>
-    <th>Name</th>
-    <th>DaBBta(R$)</th>
-	<th>AA(R$)</th>
-	<th>Valor Total($)</th>
-	<th>Data</th>
+    <th>Person Name</th>
+    <th>E-mail</th>
+	<th>Order Status</th>
+	<th>Amount Total($)</th>
+	<th>Registered Date</th>
   </tr>
 	";
 
@@ -216,17 +202,15 @@ $app->get("/admin/reports/orders", function() {
 
 	$pdf->loadHtml($html);
 
-	//RENDERIZAR O HTML
+	//html render
 	$pdf->render();
 
-	//gerar a saida do pdf
+	//pdf generate
 	$pdf->stream("report.pdf",
 	 array(
 	 	"Attachment"=>false
 
 	));
-
-
 
 });
 
@@ -236,20 +220,16 @@ $app->get("/admin/reports/genresxproducts", function() {
 
 	$allgames = Report::reportGenresxProd();
 
-	//var_dump($product);
-	//die;
-
 	$db = new Sql();
 
-
-	// INSTACIAR A CLASSE DOM PDF
+	// DOM PDF Class
 	$pdf = new Dompdf();
 
 
 	$html = "
 	<style>
 		table {
-    	font-family: arial, sans-serif;
+    	font-family: Times, serif;
     	border-collapse: collapse;
     	width: 100%;
 	}
@@ -259,12 +239,12 @@ $app->get("/admin/reports/genresxproducts", function() {
 	}
     </style>
 	<h1>
-	Relatório de Produtos
+	Genre x Game Report
 	</h1>
 	<table>
   	<tr style='background-color: #45b77d'>
-    <th>ID</th>
-    <th>Name</th>
+    <th>Genre Name</th>
+    <th>Game Name</th>
   </tr>
 	";
 
@@ -282,17 +262,15 @@ $app->get("/admin/reports/genresxproducts", function() {
 
 	$pdf->loadHtml($html);
 
-	//RENDERIZAR O HTML
+	//html render
 	$pdf->render();
 
-	//gerar a saida do pdf
+	//pdf generate
 	$pdf->stream("report.pdf",
 	 array(
 	 	"Attachment"=>false
 
 	));
-
-
 
 });
 
@@ -302,20 +280,16 @@ $app->get("/admin/reports/persons", function() {
 
 	$allgames = Report::reportPersons();
 
-	//var_dump($product);
-	//die;
-
 	$db = new Sql();
 
-
-	// INSTACIAR A CLASSE DOM PDF
+	// DOM PDF Class
 	$pdf = new Dompdf();
 
 
 	$html = "
 	<style>
 		table {
-    	font-family: arial, sans-serif;
+    	font-family: Times, serif;
     	border-collapse: collapse;
     	width: 100%;
 	}
@@ -325,16 +299,16 @@ $app->get("/admin/reports/persons", function() {
 	}
     </style>
 	<h1>
-	Relatório de Produtos
+	User Report
 	</h1>
 	<table>
   	<tr style='background-color: #45b77d'>
-    <th>ID</th>
     <th>Name</th>
-    <th>NamFWASe</th>
-	<th>NaDDme</th>
-	<th>A</th>
-	<th>NaCme</th>
+    <th>E-mail</th>
+    <th>Number Phone</th>
+	<th>Login</th>
+	<th>Admin | 1=Yes  2=No</th>
+	<th>Registered Date</th>
   </tr>
 	";
 
@@ -356,10 +330,10 @@ $app->get("/admin/reports/persons", function() {
 
 	$pdf->loadHtml($html);
 
-	//RENDERIZAR O HTML
+	//html render
 	$pdf->render();
 
-	//gerar a saida do pdf
+	//pdf generate
 	$pdf->stream("report.pdf",
 	 array(
 	 	"Attachment"=>false

@@ -26,32 +26,32 @@
         <!-- info row -->
         <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
-            De
+            From
             <address>
                 <strong>GUIBOY ECOMMERCE</strong><br>
                 Rua Céu Azul, 666 - Centro<br>
                 Estrela - RS<br>
-                Telefone: (51) 9 9999-6666<br>
+                Phone Number: (51) 9 9999-6666<br>
                 E-mail: guiboy@ecommerce.com.br
             </address>
             </div>
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-            Para
+            To
             <address>
                 <strong>{$order.desperson}</strong><br>
                 {$order.desaddress}, {$order.descomplement}<br>
                 {$order.descity} - {$order.desstate}<br>
-                {if="$order.nrphone && $order.nrphone!='0'"}Telefone: {$order.nrphone}<br>{/if}
+                {if="$order.nrphone && $order.nrphone!='0'"}Phone Number: {$order.nrphone}<br>{/if}
                 E-mail: {$order.desemail}
             </address>
             </div>
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-            <b>Pedido #{$order.idorder}</b><br>
+            <b>Order #{$order.idorder}</b><br>
             <br>
-            <b>Emitido em:</b> {function="formatDate($order.dtregister)"}<br>
-            <b>Pago em:</b> {function="formatDate($order.dtregister)"}
+            <b>Issued on:</b> {function="formatDate($order.dtregister)"}<br>
+            <b>Paid in:</b> {function="formatDate($order.dtregister)"}
             </div>
             <!-- /.col -->
         </div>
@@ -63,9 +63,9 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Qtd</th>
-                    <th>Produto</th>
-                    <th>Código #</th>
+                    <th>Quantity</th>
+                    <th>Product</th>
+                    <th>Code #</th>
                     <th>Subtotal</th>
                 </tr>
                 </thead>
@@ -75,7 +75,7 @@
                     <td>{$value.nrqtd}</td>
                     <td>{$value.desproduct}</td>
                     <td>{$value.idproduct}</td>
-                    <td>R${function="formatPrice($order.vltotal)"}</td>
+                    <td>${$order.vltotal}</td>
                 </tr>
                 {/loop}
                 </tbody>
@@ -89,16 +89,16 @@
             <!-- accepted payments column -->
             <div class="col-xs-6">
 
-                <p class="lead">Forma de Pagamento</p>
+                <p class="lead">Form of Payment</p>
                 
                 <table class="table">
                     <tbody>
                     <tr>
-                        <th style="width:180px;">Método de Pagamento:</th>
-                        <td>Boleto</td>
+                        <th style="width:180px;">Payment Method:</th>
+                        <td>Payment Slip</td>
                     </tr>
                     <tr>
-                        <th>Parcelas:</th>
+                        <th>Payment:</th>
                         <td>1x</td>
                     </tr>
                     <!--
@@ -113,17 +113,17 @@
             </div>
             <!-- /.col -->
             <div class="col-xs-6">
-            <p class="lead">Resumo do Pedido</p>
+            <p class="lead">Order</p>
     
             <div class="table-responsive">
                 <table class="table">
                 <tbody><tr>
                     <th style="width:50%">Subtotal:</th>
-                    <td>R${function="formatPrice($cart.vlsubtotal)"}</td>
+                    <td>${$order.vltotal}</td>
                 </tr>
                 <tr>
                     <th>Total:</th>
-                    <td>R${function="formatPrice($cart.vltotal)"}</td>
+                    <td>${$order.vltotal}</td>
                 </tr>
                 </tbody></table>
             </div>
@@ -136,15 +136,15 @@
         <div class="row no-print">
             <div class="col-xs-12">
                 <button type="button" onclick="window.location.href = '/admin/orders/{$order.idstatus}/status'" class="btn btn-default pull-left" style="margin-left: 5px;">
-                    <i class="fa fa-pencil"></i> Editar Status
+                    <i class="fa fa-pencil"></i> Status Edit
                 </button>
                 <button type="button" onclick="window.open('/boleto/{$order.idstatus}')" class="btn btn-default pull-left" style="margin-left: 5px;">
-                    <i class="fa fa-barcode"></i> Boleto
+                    <i class="fa fa-barcode"></i> Payment Slip
                 </button>
 
                 
                 <button type="button" onclick="window.print()" class="btn btn-primary pull-right" style="margin-right: 5px;">
-                    <i class="fa fa-print"></i> Imprimir
+                    <i class="fa fa-print"></i> Print
                 </button>
             </div>
         </div>

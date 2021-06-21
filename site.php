@@ -26,6 +26,8 @@ $app->get("/products", function(){
 
 	//User::verifyLogin();
 
+	$products = Product::listAll();
+	Product::checkList($products);
 
 
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
@@ -68,6 +70,7 @@ $app->get("/products", function(){
 
   	$page->setTpl("products", [
 		"products"=>$pagination['data'],
+		//'products'=>Product::checkList($products),
 		"search"=>$search,
 		"pages"=>$pages
 	]);
@@ -313,7 +316,7 @@ $app->post("/checkout", function(){
 		'idcart'=>$cart->getidcart(),
 		'idaddress'=>$address->getidaddress(),
 		'iduser'=>$user->getiduser(),
-		'idstatus'=>OrderStatus::EM_ABERTO,
+		'idstatus'=>OrderStatus::OPEN,
 		'vltotal'=>$cart->getvltotal()
 	]);
 

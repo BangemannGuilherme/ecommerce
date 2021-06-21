@@ -23,9 +23,8 @@
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-                    <th>Cliente</th>
-                    <th>Valor Total</th>
-                    <th>Valor do Frete</th>
+                    <th>Customer</th>
+                    <th>Amount Total</th>
                     <th>Status</th>
                     <th style="width: 220px">&nbsp;</th>
                   </tr>
@@ -38,14 +37,14 @@
                     <td>$<?php echo formatPrice($value1["vltotal"]); ?></td>
                     <td><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>
-                      <a href="/admin/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default btn-xs"><i class="fa fa-search"></i> Detalhes</a>
+                      <a href="/admin/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Details</a>
                       <a href="/admin/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/status" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Status</a>
-                      <a href="/admin/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/admin/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Are you sure you want to DELETE?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                   </tr>
                   <?php }else{ ?>
                   <tr>
-                      <td colspan="6">Nenhum pedido foi encontrado.</td>
+                      <td colspan="6">No orders</td>
                   </tr>
                   <?php } ?>
                 </tbody>

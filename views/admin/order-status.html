@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Editar Status do Pedido</h3>
+                <h3 class="box-title">Edit Order Status</h3>
             </div>
             <!-- /.box-header -->
             {if="$msgError != ''"}
@@ -38,7 +38,7 @@
             <form role="form" action="/admin/orders/{$order.idorder}/status" method="post">
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="desproduct">Status do Pedido</label>
+                        <label for="desproduct">Order Status</label>
                         <select class="form-control" name="idstatus">
                             {loop="$status"}
                             <option {if="$value.idstatus === $order.idstatus"}selected="selected"{/if} value="{$value.idstatus}">{$value.desstatus}</option>
@@ -48,7 +48,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
             </div>

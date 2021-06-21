@@ -47,15 +47,15 @@
                     </tbody>
                     <tbody>
                         <td>
-                            <a href="/admin/reports/genresxproducts" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Report</a>
-                        </td>
-                        <td>Genres x Products</td>
-                    </tbody>
-                    <tbody>
-                        <td>
                             <a href="/admin/reports/persons" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Report</a>
                         </td>
                         <td>Persons</td>
+                    </tbody>
+                    <tbody>
+                        <td>
+                            <a href="/admin/reports/genresxproducts" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Report</a>
+                        </td>
+                        <td>Genres x Products</td>
                     </tbody>
                 </table>
             </div>

@@ -32,13 +32,6 @@
                             </div>
                             <?php } ?>
 
-                            <?php if( $profileError != '' ){ ?>
-
-                            <div class="alert alert-danger">
-                                <?php echo htmlspecialchars( $profileError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-
-                            </div>
-                            <?php } ?>
 
                             <br>
                             <br>
