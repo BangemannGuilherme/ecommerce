@@ -3,8 +3,62 @@
 use \BangemannGuilherme\PageAdmin;
 use \BangemannGuilherme\Model\User;
 
-
 $app->get("/admin/users", function() {
+
+	User::verifyLogin();
+
+	$id = (isset($_GET['id'])) ? $_GET['id'] : "";
+	$nome = (isset($_GET['nome'])) ? $_GET['nome'] : "";
+	$email = (isset($_GET['email'])) ? $_GET['email'] : "";
+	$login = (isset($_GET['login'])) ? $_GET['login'] : "";
+	$admin = (isset($_GET['admin'])) ? $_GET['admin'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+	
+
+	if ($id != '' || $nome != '' || $email != '' || $login != '' || $admin != '') {
+
+		$pagination = User::getPageSearchBox($id, $nome, $email, $login, $admin, $page, 10);
+
+	} else {
+
+		$pagination = User::getPage($page, 10);
+
+	}
+
+
+	$pages = [];
+
+	for ($x = 0; $x < $pagination['pages']; $x++) {
+
+		array_push($pages, [
+			'href'=>'/admin/users?'.http_build_query([
+				'page'=>$x+1,
+				'id'=>$id,
+				'nome'=>$nome,
+				'email'=>$email,
+				'login'=>$login,
+				'admin'=>$admin
+			]),
+			'text'=>$x+1
+		]);
+	}
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users", array(
+		"users"=>$pagination['data'],
+		"pages"=>$pages,
+		"id"=>$id,
+		"nome"=>$nome,
+		"email"=>$email,
+		"login"=>$login,
+		"admin"=>$admin
+	));
+
+
+});
+
+/*$app->get("/admin/users", function() {
 
 	User::verifyLogin();
 
@@ -44,7 +98,7 @@ $app->get("/admin/users", function() {
 		"pages"=>$pages
 	));
 
-});
+});*/
 
 /*$app->get('/admin/users', function() {
 	

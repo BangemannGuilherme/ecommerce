@@ -5,16 +5,65 @@ use \BangemannGuilherme\Model\User;
 use \BangemannGuilherme\Model\Category;
 use \BangemannGuilherme\Model\Product;
 
+/*$app->get("/admin/categories", function(){
+
+	User::verifyLogin();
+
+	$id = (isset($_GET['id'])) ? $_GET['id'] : "";
+	$nome = (isset($_GET['nome'])) ? $_GET['nome'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+
+	if ($id != '' || $nome != '') {
+
+		$pagination = Product::getPageSearchBox($id, $nome, $page, 10);
+
+	} else {
+
+		$pagination = Product::getPage($page, 10);
+
+	}
+
+	$pages = [];
+
+	for ($x = 0; $x < $pagination['pages']; $x++) {
+
+		array_push($pages, [
+			'href'=>'/admin/categories?'.http_build_query([
+				'page'=>$x+1,
+				'id'=>$id,
+				'nome'=>$nome
+			]),
+			'text'=>$x+1,
+		]);
+	}
+
+	//var_dump($pagination['data']);
+	//exit;
+
+	$page = new PageAdmin();
+
+	$page->setTpl("categories", [
+		"categories"=>$pagination['data'],
+		"pages"=>$pages,
+		"id"=>$id,
+		"nome"=>$nome
+	]);
+
+
+});*/
+
 $app->get("/admin/categories", function(){
 
 	User::verifyLogin();
 
-	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+	$id = (isset($_GET['id'])) ? $_GET['id'] : "";
+	$nome = (isset($_GET['nome'])) ? $_GET['nome'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-	if ($search != '') {
+	if ($id != '' || $nome != '') {
 
-		$pagination = Category::getPageSearch($search, $page);
+		$pagination = Category::getPageSearchBox($id, $nome, $page);
 
 	} else {
 
@@ -30,7 +79,8 @@ $app->get("/admin/categories", function(){
 		array_push($pages, [
 			'href'=>'/admin/categories?'.http_build_query([
 				'page'=>$x+1,
-				'search'=>$search
+				'id'=>$id,
+				'nome'=>$nome
 			]),
 			'text'=>$x+1
 		]);
@@ -41,7 +91,8 @@ $app->get("/admin/categories", function(){
 
 	$page->setTpl("categories", [
 		"categories"=>$pagination['data'],
-		"search"=>$search,
+		"id"=>$id,
+		"nome"=>$nome,
 		"pages"=>$pages
 	]);	
 

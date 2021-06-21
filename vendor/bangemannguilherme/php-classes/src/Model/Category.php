@@ -258,8 +258,34 @@ public function getProductsPage($page = 1, $itemsPerPage = 8)
 
 	}
 
-
-
+	public static function getPageSearchBox($id , $nome, $page = 1, $itemsPerPage = 8)
+	{
+ 
+	   $start = ($page - 1) * $itemsPerPage;
+ 
+	   $sql = new Sql();
+ 
+	   $results = $sql->select("
+		  SELECT SQL_CALC_FOUND_ROWS *
+		  FROM tb_categories
+		  WHERE idcategory LIKE :id
+		  AND descategory LIKE :nome
+		  ORDER BY descategory
+		  LIMIT $start, $itemsPerPage;
+	   ", [
+		  ':id'=>'%'.$id.'%',
+		  ':nome'=>'%'.$nome.'%'
+	   ]);
+ 
+	   $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+ 
+	   return [
+		  'data'=>$results,
+		  'total'=>(int)$resultTotal[0]["nrtotal"],
+		  'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+	   ];
+ 
+	}
 
 }
 

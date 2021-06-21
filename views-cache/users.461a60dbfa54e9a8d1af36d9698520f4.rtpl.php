@@ -20,16 +20,23 @@
             
             <div class="box-header">
               <a href="/admin/users/create" class="btn btn-success">Register</a>
-              <form
-              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-              <div class="input-group">
-                  <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..."
-                      value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
-                  <div class="input-group-append">
-                      <button class="btn btn-primary" type="submit">
-                          <i class="fas fa-search fa-sm"></i>
-                      </button>
-                  </div>
+              <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group"> 
+                  <input type="text" name="id" class="form-control bg-light border-1 small" placeholder="ID"
+                  value="<?php echo htmlspecialchars( $id, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
+                  <input type="text" name="nome" class="form-control bg-light border-1 small" placeholder="Name" 
+                  value="<?php echo htmlspecialchars( $nome, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
+                  <input type="text" name="email" class="form-control bg-light border-1 small" placeholder="Email" 
+                  value="<?php echo htmlspecialchars( $email, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
+                  <input type="text" name="login" class="form-control bg-light border-1 small" placeholder="Login" 
+                  value="<?php echo htmlspecialchars( $login, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
+                  <input type="text" name="admin" class="form-control bg-light border-1 small" placeholder="Admin | 1 = Yes    2 = No" 
+                  value="<?php echo htmlspecialchars( $admin, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit">
+                      <i class="fas fa-search fa-sm"></i>
+                  </button>
+                </div>
               </div>
             </form>
             </div>

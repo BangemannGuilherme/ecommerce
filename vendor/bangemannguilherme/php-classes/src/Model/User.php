@@ -548,7 +548,43 @@ class User extends Model {
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 		];
 
-	} 
+	}
+
+	public static function getPageSearchBox($id , $nome, $email, $login, $admin, $page = 1, $itemsPerPage = 8)
+	{
+ 
+	   $start = ($page - 1) * $itemsPerPage;
+ 
+	   $sql = new Sql();
+ 
+	   $results = $sql->select("
+		  SELECT SQL_CALC_FOUND_ROWS *
+		  FROM tb_users a 
+		  INNER JOIN tb_persons b USING(idperson) 
+		  WHERE a.iduser LIKE :id
+		  AND b.desperson LIKE :nome
+		  AND b.desemail LIKE :email
+		  AND a.deslogin LIKE :login
+		  AND a.inadmin LIKE :admin
+		  ORDER BY b.desperson
+		  LIMIT $start, $itemsPerPage;
+	   ", [
+		  ':id'=>'%'.$id.'%',
+		  ':nome'=>'%'.$nome.'%',
+		  ':email'=>'%'.$email.'%',
+		  ':login'=>'%'.$login.'%',
+		  ':admin'=>'%'.$admin.'%'
+	   ]);
+ 
+	   $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+ 
+	   return [
+		  'data'=>$results,
+		  'total'=>(int)$resultTotal[0]["nrtotal"],
+		  'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+	   ];
+ 
+	}
 
 }
 

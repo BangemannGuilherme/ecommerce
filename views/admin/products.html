@@ -20,19 +20,35 @@
             
             <div class="box-header">
               <a href="/admin/products/create" class="btn btn-success">Register</a>
-              <form
+              <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                  <div class="input-group"> 
+                    <input type="text" name="id" class="form-control bg-light border-1 small" placeholder="ID"
+                    value="{$id}" aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" name="nome" class="form-control bg-light border-1 small" placeholder="Name" 
+                    value="{$nome}" aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" name="preco" class="form-control bg-light border-1 small" placeholder="Price" 
+                    value="{$preco}" aria-label="Search" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+              <!--<form
               class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
               <div class="input-group">
                   <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..."
-                      value="{$search}" aria-label="Search" aria-describedby="basic-addon2">
+                      value="" aria-label="Search" aria-describedby="basic-addon2">
                   <div class="input-group-append">
                       <button class="btn btn-primary" type="submit">
                           <i class="fas fa-search fa-sm"></i>
                       </button>
                   </div>
               </div>
-            </form>
-            </div>
+            </form>-->
+            
 
             <div class="box-body no-padding">
               <table class="table table-striped">

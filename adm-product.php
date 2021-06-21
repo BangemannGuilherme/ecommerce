@@ -8,6 +8,61 @@ $app->get("/admin/products", function(){
 
 	User::verifyLogin();
 
+	$id = (isset($_GET['id'])) ? $_GET['id'] : "";
+	$nome = (isset($_GET['nome'])) ? $_GET['nome'] : "";
+	$preco = (isset($_GET['preco'])) ? $_GET['preco'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+	//$_GET['boxx'];
+
+	//var_dump($id, $nome, $preco, $peso);
+	//exit;
+
+	if ($id != '' || $nome != '' || $preco != '') {
+
+		$pagination = Product::getPageSearchBox($id, $nome, $preco, $page, 10);
+
+	} else {
+
+		$pagination = Product::getPage($page, 10);
+
+	}
+
+	$pages = [];
+
+	for ($x = 0; $x < $pagination['pages']; $x++) {
+
+		array_push($pages, [
+			'href'=>'/admin/products?'.http_build_query([
+				'page'=>$x+1,
+				'id'=>$id,
+				'nome'=>$nome,
+				'preco'=>$preco
+			]),
+			'text'=>$x+1,
+		]);
+	}
+
+	//var_dump($pagination['data']);
+	//exit;
+
+	$page = new PageAdmin();
+
+	$page->setTpl("products", [
+		"products"=>$pagination['data'],
+		"pages"=>$pages,
+		"id"=>$id,
+		"nome"=>$nome,
+		"preco"=>$preco
+	]);
+
+
+});
+
+/*$app->get("/admin/products", function(){
+
+	User::verifyLogin();
+
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -46,7 +101,7 @@ $app->get("/admin/products", function(){
 		"pages"=>$pages
 	]);
 
-});
+});*/
 
 /*$app->get('/admin/products', function ()
 {
