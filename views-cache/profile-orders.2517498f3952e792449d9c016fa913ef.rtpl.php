@@ -58,7 +58,7 @@
                         <?php }else{ ?>
 
                         <div class="alert alert-info">
-                            Nenhum pedido foi encontrado.
+                            No orders.
                         </div>
                         <?php } ?>
 

@@ -30,7 +30,7 @@
                   value="<?php echo htmlspecialchars( $email, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
                   <input type="text" name="login" class="form-control bg-light border-1 small" placeholder="Login" 
                   value="<?php echo htmlspecialchars( $login, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
-                  <input type="text" name="admin" class="form-control bg-light border-1 small" placeholder="Admin | 1 = Yes    2 = No" 
+                  <input type="text" name="admin" class="form-control bg-light border-1 small" placeholder="Admin | 1 = Yes    0 = No" 
                   value="<?php echo htmlspecialchars( $admin, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-primary" type="submit">

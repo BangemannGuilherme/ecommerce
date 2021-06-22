@@ -26,7 +26,9 @@
                     value="<?php echo htmlspecialchars( $id, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
                     <input type="text" name="nome" class="form-control bg-light border-1 small" placeholder="Name" 
                     value="<?php echo htmlspecialchars( $nome, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
-                    <input type="text" name="preco" class="form-control bg-light border-1 small" placeholder="Price" 
+                    <input type="text" name="category" class="form-control bg-light border-1 small" placeholder="Genre" 
+                    value="<?php echo htmlspecialchars( $category, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" name="preco" class="form-control bg-light border-1 small" placeholder="Price =" 
                     value="<?php echo htmlspecialchars( $preco, ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-label="Search" aria-describedby="basic-addon2">
                   <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
@@ -56,6 +58,7 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>Product Name</th>
+                    <th>Genre</th>
                     <th>Price</th>
                     <th style="width: 140px">&nbsp;</th>
                   </tr>
@@ -66,6 +69,7 @@
                   <tr>
                     <td><?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>
                       <a href="/admin/products/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>

@@ -89,7 +89,7 @@ $app->get("/admin/orders/:idorder", function($idorder) {
 
  });
 
-$app->get("/admin/orders", function() {
+/*$app->get("/admin/orders", function() {
 
 	User::verifyLogin();
 
@@ -100,6 +100,57 @@ $app->get("/admin/orders", function() {
 
 
 	]);
+
+});*/
+
+$app->get("/admin/orders", function() {
+
+	User::verifyLogin();
+
+	$id = (isset($_GET['id'])) ? $_GET['id'] : "";
+	$nome = (isset($_GET['nome'])) ? $_GET['nome'] : "";
+	$vltotal = (isset($_GET['vltotal'])) ? $_GET['vltotal'] : "";
+	$status = (isset($_GET['status'])) ? $_GET['status'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+	
+
+	if ($id != '' || $nome != '' || $vltotal != '' || $status != '') {
+
+		$pagination = Order::getPageSearchBox($id, $nome, $vltotal, $status, $page, 10);
+
+	} else {
+
+		$pagination = Order::getPage($page, 10);
+
+	}
+
+
+	$pages = [];
+
+	for ($x = 0; $x < $pagination['pages']; $x++) {
+
+		array_push($pages, [
+			'href'=>'/admin/orders?'.http_build_query([
+				'page'=>$x+1,
+				'id'=>$id,
+				'nome'=>$nome,
+				'vltotal'=>$vltotal,
+				'status'=>$status
+			]),
+			'text'=>$x+1
+		]);
+	}
+
+	$page = new PageAdmin();
+
+	$page->setTpl("orders", array(
+		"orders"=>$pagination['data'],
+		"pages"=>$pages,
+		"id"=>$id,
+		"nome"=>$nome,
+		'vltotal'=>$vltotal,
+		'status'=>$status
+	));
 
 
 });

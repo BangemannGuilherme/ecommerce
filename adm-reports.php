@@ -307,7 +307,7 @@ $app->get("/admin/reports/persons", function() {
     <th>E-mail</th>
     <th>Number Phone</th>
 	<th>Login</th>
-	<th>Admin | 1=Yes  2=No</th>
+	<th>Admin 1=Yes  0=No</th>
 	<th>Registered Date</th>
   </tr>
 	";

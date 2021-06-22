@@ -207,6 +207,40 @@ class Order extends Model {
 
 	}
 
+	public static function getPageSearchBox($id , $nome, $vltotal, $status, $page = 1, $itemsPerPage = 8)
+	{
+ 
+	   $start = ($page - 1) * $itemsPerPage;
+ 
+	   $sql = new Sql();
+ 
+	   $results = $sql->select("
+	   	SELECT SQL_CALC_FOUND_ROWS 
+		o.idorder, p.desperson, o.vltotal, os.desstatus
+		FROM tb_orders o, tb_ordersstatus os, tb_users u, tb_persons p
+	    WHERE o.idstatus=os.idstatus AND o.iduser=u.iduser AND u.idperson=p.idperson
+		AND o.idorder LIKE :id
+		AND p.desperson LIKE :nome
+		AND o.vltotal LIKE :vltotal
+		AND os.desstatus LIKE :status
+		LIMIT $start, $itemsPerPage;
+	   ", [
+		  ':id'=>'%'.$id.'%',
+		  ':nome'=>'%'.$nome.'%',
+		  ':vltotal'=>'%'.$vltotal.'%',
+		  ':status'=>'%'.$status.'%'
+	   ]);
+ 
+	   $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+ 
+	   return [
+		  'data'=>$results,
+		  'total'=>(int)$resultTotal[0]["nrtotal"],
+		  'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+	   ];
+ 
+	}
+
 }
 
 ?>

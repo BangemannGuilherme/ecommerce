@@ -167,16 +167,18 @@ class Product extends Model {
 		$sql = new Sql();
 
 		$results = $sql->select("
-			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_products 
-			ORDER BY desproduct
+			SELECT SQL_CALC_FOUND_ROWS
+            p.idproduct, p.desproduct, c.descategory, p.vlprice, p.desurl
+            FROM tb_products p, tb_categories c, tb_productscategories pc
+            WHERE p.idproduct=pc.idproduct AND c.idcategory=pc.idcategory
+			ORDER BY p.desproduct
 			LIMIT $start, $itemsPerPage;
 		");
 
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
 		return [
-			'data'=>$results,
+			'data'=>Product::checkList($results),
 			'total'=>(int)$resultTotal[0]["nrtotal"],
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 		];
@@ -203,14 +205,14 @@ class Product extends Model {
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
 		return [
-			'data'=>$results,
+			'data'=>Product::checkList($results),
 			'total'=>(int)$resultTotal[0]["nrtotal"],
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 		];
 
 	}
 
-    public static function getPageSearchBox($id, $nome, $preco, $page = 1, $itemsPerPage = 8)
+    public static function getPageSearchBox($id, $nome, $category, $preco, $page = 1, $itemsPerPage = 8)
     {
 
         $start = ($page - 1) * $itemsPerPage;
@@ -219,16 +221,19 @@ class Product extends Model {
 
 
         $results = $sql->select("
-            SELECT SQL_CALC_FOUND_ROWS *
-            FROM tb_products
-            WHERE idproduct LIKE :id
-			AND desproduct LIKE :nome
-			AND vlprice LIKE :preco
-            ORDER BY desproduct
+            SELECT SQL_CALC_FOUND_ROWS
+            p.idproduct, p.desproduct, c.descategory, p.vlprice
+            FROM tb_products p, tb_categories c, tb_productscategories pc
+            WHERE p.idproduct=pc.idproduct AND c.idcategory=pc.idcategory
+            AND p.idproduct LIKE :id
+			AND p.desproduct LIKE :nome
+            AND c.descategory LIKE :category
+			AND p.vlprice LIKE :preco
             LIMIT $start, $itemsPerPage;
         ", [
             ':id'=>'%'.$id.'%',
             ':nome'=>'%'.$nome.'%',
+            ':category'=>'%'.$category.'%',
             ':preco'=>'%'.$preco.'%'
         ]);
 

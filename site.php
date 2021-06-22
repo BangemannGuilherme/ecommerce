@@ -26,9 +26,6 @@ $app->get("/products", function(){
 
 	//User::verifyLogin();
 
-	$products = Product::listAll();
-	Product::checkList($products);
-
 
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -70,7 +67,6 @@ $app->get("/products", function(){
 
   	$page->setTpl("products", [
 		"products"=>$pagination['data'],
-		//'products'=>Product::checkList($products),
 		"search"=>$search,
 		"pages"=>$pages
 	]);
@@ -498,7 +494,7 @@ $app->post("/login", function(){
 
 	}
 
-	header("Location: /checkout");
+	header("Location: /profile");
 	exit;
 
 });
@@ -563,7 +559,7 @@ $app->post("/register", function(){
 
 	User::login($_POST['email'], $_POST['password']);
 
-	header('Location: /checkout');
+	header('Location: /profile');
 	exit;
 
 });

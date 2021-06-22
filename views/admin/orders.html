@@ -17,6 +17,25 @@
   <div class="row">
   	<div class="col-md-12">
   		<div class="box box-primary">
+        <div class="box-header">
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <div class="input-group"> 
+            <input type="text" name="id" class="form-control bg-light border-1 small" placeholder="ID"
+            value="{$id}" aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" name="nome" class="form-control bg-light border-1 small" placeholder="Name" 
+            value="{$nome}" aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" name="vltotal" class="form-control bg-light border-1 small" placeholder="Amount Total =" 
+            value="{$vltotal}" aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" name="status" class="form-control bg-light border-1 small" placeholder="Status" 
+            value="{$status}" aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
 
             <div class="box-body no-padding">
               <table class="table table-striped">

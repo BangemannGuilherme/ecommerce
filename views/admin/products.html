@@ -26,7 +26,9 @@
                     value="{$id}" aria-label="Search" aria-describedby="basic-addon2">
                     <input type="text" name="nome" class="form-control bg-light border-1 small" placeholder="Name" 
                     value="{$nome}" aria-label="Search" aria-describedby="basic-addon2">
-                    <input type="text" name="preco" class="form-control bg-light border-1 small" placeholder="Price" 
+                    <input type="text" name="category" class="form-control bg-light border-1 small" placeholder="Genre" 
+                    value="{$category}" aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" name="preco" class="form-control bg-light border-1 small" placeholder="Price =" 
                     value="{$preco}" aria-label="Search" aria-describedby="basic-addon2">
                   <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
@@ -56,6 +58,7 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>Product Name</th>
+                    <th>Genre</th>
                     <th>Price</th>
                     <th style="width: 140px">&nbsp;</th>
                   </tr>
@@ -65,6 +68,7 @@
                   <tr>
                     <td>{$value.idproduct}</td>
                     <td>{$value.desproduct}</td>
+                    <td>{$value.descategory}</td>
                     <td>{$value.vlprice}</td>
                     <td>
                       <a href="/admin/products/{$value.idproduct}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>

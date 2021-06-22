@@ -10,6 +10,7 @@ $app->get("/admin/products", function(){
 
 	$id = (isset($_GET['id'])) ? $_GET['id'] : "";
 	$nome = (isset($_GET['nome'])) ? $_GET['nome'] : "";
+	$category = (isset($_GET['category'])) ? $_GET['category'] : "";
 	$preco = (isset($_GET['preco'])) ? $_GET['preco'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -18,9 +19,9 @@ $app->get("/admin/products", function(){
 	//var_dump($id, $nome, $preco, $peso);
 	//exit;
 
-	if ($id != '' || $nome != '' || $preco != '') {
+	if ($id != '' || $nome != '' || $category != '' || $preco != '') {
 
-		$pagination = Product::getPageSearchBox($id, $nome, $preco, $page, 10);
+		$pagination = Product::getPageSearchBox($id, $nome, $category, $preco, $page, 10);
 
 	} else {
 
@@ -37,6 +38,7 @@ $app->get("/admin/products", function(){
 				'page'=>$x+1,
 				'id'=>$id,
 				'nome'=>$nome,
+				'category'=>$category,
 				'preco'=>$preco
 			]),
 			'text'=>$x+1,
@@ -53,6 +55,7 @@ $app->get("/admin/products", function(){
 		"pages"=>$pages,
 		"id"=>$id,
 		"nome"=>$nome,
+		"category"=>$category,
 		"preco"=>$preco
 	]);
 
