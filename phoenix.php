@@ -2,8 +2,8 @@
 return [
     'log_table_name' => 'phoenix_log',
     'migration_dirs' => [
-        'first' => __DIR__ . '/dbmigrations/homolog_dir',
-        'second' => __DIR__ . '/dbmigrations/product_dir',
+        'first' => __DIR__ . '/database/dbmigrations/homolog_dir',
+        'second' => __DIR__ . '/database/dbmigrations/product_dir',
     ],
     'environments' => [
         'local' => [
@@ -18,7 +18,7 @@ return [
         ],
         'production' => [
             'adapter' => 'mysql',
-            'host' => 'production_host',
+            'host' => 'localhost',
             'username' => 'root',
             'password' => '',
             'db_name' => 'test_production_db',
